@@ -1,0 +1,24 @@
+#
+# Eclipse metadata.
+#
+*.launch
+.project
+.classpath
+.settings/
+
+#
+# Build folders.
+#
+bin/
+target/
+
+#
+# Maven release metadata.
+#
+release.properties
+pom.xml.*
+
+#
+# Do not store any logs
+#
+*.log
