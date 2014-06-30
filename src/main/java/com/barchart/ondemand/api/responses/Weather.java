@@ -17,7 +17,7 @@ public class Weather extends ResponseBase {
 	}
 
 	public WeatherForecast current() {
-		if (isEmptyResponse()) {
+		if (isEmpty()) {
 			return null;
 		}
 

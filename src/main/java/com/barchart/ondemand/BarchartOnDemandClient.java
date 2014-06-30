@@ -1,6 +1,7 @@
 package com.barchart.ondemand;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ import com.barchart.ondemand.api.responses.FuturesSpecifications;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
 import com.barchart.ondemand.api.responses.InstrumentDefinitions;
+import com.barchart.ondemand.api.responses.OnDemandResponse;
 import com.barchart.ondemand.api.responses.Profiles;
 import com.barchart.ondemand.api.responses.Quotes;
 import com.barchart.ondemand.api.responses.Ratings;
@@ -69,7 +71,7 @@ public class BarchartOnDemandClient {
 
 	private final OkHttpClient http = new OkHttpClient();
 
-	private final Map<Class<?>, Class<?>> responseMap = new HashMap<Class<?>, Class<?>>();
+	public static final Map<Class<?>, Class<?>> responseMap = new HashMap<Class<?>, Class<?>>();
 
 	//
 
@@ -98,7 +100,7 @@ public class BarchartOnDemandClient {
 
 	//
 
-	public <T extends ResponseBase> ResponseBase fetch(final OnDemandRequest request) throws Exception {
+	public <T extends OnDemandResponse> OnDemandResponse fetch(final OnDemandRequest request) throws Exception {
 
 		if (request == null) {
 			throw new RuntimeException("request cannot be null.");
@@ -115,7 +117,48 @@ public class BarchartOnDemandClient {
 
 		final String response = fetchString(sb.toString(), http);
 
-		return (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
+		// OnDemandResponse resp =
+		// (Class.forName(responseMap.get(request.getClass()).getName());
+		// final OnDemandResponse base = new
+		// ResponseBase.Builder().client(this).request(request).build();
+
+		final ResponseBase base = (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
+
+		base.configure(request, this);
+
+		return base;
+
+	}
+
+	public boolean refresh(final ResponseBase response) {
+
+		try {
+
+			JsonUtil.update(response, fetchApiString(response.getRequest(), http));
+
+			System.out.println("Updated: " + response.getRequest().name() + " @ " + new Date());
+
+			return true;
+		} catch (Exception e) {
+			System.out.println("failed to update response, e = " + e);
+		}
+
+		return false;
+
+	}
+
+	private String fetchApiString(final OnDemandRequest request, final OkHttpClient client) throws IOException {
+
+		final StringBuilder sb = new StringBuilder();
+
+		sb.append(baseUrl);
+		sb.append(request.endpoint());
+		sb.append("?");
+		sb.append(QueryUtil.urlEncodeUTF8(request.parameters()));
+		sb.append("&apikey=");
+		sb.append(apiKey);
+
+		return fetchString(sb.toString(), client);
 
 	}
 

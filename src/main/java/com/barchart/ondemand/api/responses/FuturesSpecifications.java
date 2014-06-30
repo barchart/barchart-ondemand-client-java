@@ -37,7 +37,7 @@ public class FuturesSpecifications extends ResponseBase {
 
 		final Collection<FuturesSpecification> res = new ArrayList<FuturesSpecification>();
 
-		if (isEmptyResponse()) {
+		if (isEmpty()) {
 			return res;
 		}
 

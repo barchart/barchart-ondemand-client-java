@@ -357,7 +357,7 @@ public class MainTest {
 
 	private void testFuturesSepecifications() throws IOException {
 
-		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "CMER" }).build();
+		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "GLBX" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -365,7 +365,7 @@ public class MainTest {
 
 		final FuturesSpecifications results = JsonUtil.fromJson(FuturesSpecifications.class, HttpUtil.fetchString(url));
 
-		System.out.println("FuturesSpecifications for CME = " + results.byExchange("CME"));
+		System.out.println("FuturesSpecifications for GLBX = " + results.byExchange("GLBX"));
 
 	}
 
