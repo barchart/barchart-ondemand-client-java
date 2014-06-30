@@ -7,8 +7,10 @@ import com.barchart.ondemand.api.CorporateActionsRequest;
 import com.barchart.ondemand.api.FinancialHighlightRequest;
 import com.barchart.ondemand.api.FinancialRatioRequest;
 import com.barchart.ondemand.api.FuturesOptionsRequest;
+import com.barchart.ondemand.api.FuturesSpecificationsRequest;
 import com.barchart.ondemand.api.IncomeStatementRequest;
 import com.barchart.ondemand.api.IndexMembersRequest;
+import com.barchart.ondemand.api.InstrumentDefinitionRequest;
 import com.barchart.ondemand.api.MomentumRequest;
 import com.barchart.ondemand.api.OnDemandRequest;
 import com.barchart.ondemand.api.OnDemandRequest.GenericRequestField;
@@ -29,8 +31,10 @@ import com.barchart.ondemand.api.responses.CorporateActions;
 import com.barchart.ondemand.api.responses.FinancialHighlights;
 import com.barchart.ondemand.api.responses.FinancialRatios;
 import com.barchart.ondemand.api.responses.FuturesOptions;
+import com.barchart.ondemand.api.responses.FuturesSpecifications;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
+import com.barchart.ondemand.api.responses.InstrumentDefinitions;
 import com.barchart.ondemand.api.responses.Momentums;
 import com.barchart.ondemand.api.responses.Profiles;
 import com.barchart.ondemand.api.responses.Quotes;
@@ -49,7 +53,7 @@ public class MainTest {
 
 		/* set API key */
 
-		HttpUtil.apiKey = "change-me";
+		HttpUtil.apiKey = args[0];
 
 		try {
 			new MainTest();
@@ -59,6 +63,9 @@ public class MainTest {
 	}
 
 	public MainTest() throws IOException {
+
+		textFuturesSepecifications();
+		sep();
 
 		testMomentums();
 		sep();
@@ -103,6 +110,9 @@ public class MainTest {
 		sep();
 
 		testSDFuturesOptions();
+		sep();
+
+		testInstrumentDefinitons();
 		sep();
 
 	}
@@ -323,6 +333,35 @@ public class MainTest {
 		final Momentums results = JsonUtil.fromJson(Momentums.class, HttpUtil.fetchString(url));
 
 		System.out.println("Momentums = " + results.all());
+	}
+
+	private void testInstrumentDefinitons() throws IOException {
+
+		final OnDemandRequest p = new InstrumentDefinitionRequest.Builder().exchanges(new String[] { "CME" })
+				.maxRecords(100).build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("InstrumentDefinitionRequest ENDPOINT = " + url);
+
+		final InstrumentDefinitions results = JsonUtil.fromJson(InstrumentDefinitions.class, HttpUtil.fetchString(url));
+
+		System.out.println("InstrumentDefinitions = " + results.all());
+
+	}
+
+	private void textFuturesSepecifications() throws IOException {
+
+		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "CMER" }).build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("FuturesSpecificationsRequest ENDPOINT = " + url);
+
+		final FuturesSpecifications results = JsonUtil.fromJson(FuturesSpecifications.class, HttpUtil.fetchString(url));
+
+		System.out.println("FuturesSpecifications for CME = " + results.byExchange("CME"));
+
 	}
 
 }

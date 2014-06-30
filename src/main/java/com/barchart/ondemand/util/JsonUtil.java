@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -15,6 +16,10 @@ public class JsonUtil {
 	private static final ObjectMapper json = new ObjectMapper();
 
 	private static Logger log = LoggerFactory.getLogger(JsonUtil.class);
+
+	static {
+		json.setSerializationInclusion(Include.NON_NULL);
+	}
 
 	public static <T> T fromJson(final Class<T> klaz, final String jsonText) {
 
