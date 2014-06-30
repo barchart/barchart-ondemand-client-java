@@ -18,6 +18,10 @@
 * getEarningsEstimates
 * getLeaders
 * getHighsLows
+* getInstrumentDefinition
+* getFuturesSpecifications
+* getFuturesExpirations
+* getWeather
 
 ### Example Code
 
