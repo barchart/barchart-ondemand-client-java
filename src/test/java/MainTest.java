@@ -25,6 +25,7 @@ import com.barchart.ondemand.api.SignalsRequest;
 import com.barchart.ondemand.api.SignalsRequestField;
 import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
+import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
@@ -43,6 +44,7 @@ import com.barchart.ondemand.api.responses.Ratings;
 import com.barchart.ondemand.api.responses.SDFuturesOptions;
 import com.barchart.ondemand.api.responses.Signals;
 import com.barchart.ondemand.api.responses.Technicals;
+import com.barchart.ondemand.api.responses.Weather;
 import com.barchart.ondemand.util.HttpUtil;
 import com.barchart.ondemand.util.JsonUtil;
 import com.barchart.ondemand.util.QueryUtil;
@@ -64,7 +66,10 @@ public class MainTest {
 
 	public MainTest() throws IOException {
 
-		textFuturesSepecifications();
+		testWeather();
+		sep();
+
+		testFuturesSepecifications();
 		sep();
 
 		testMomentums();
@@ -350,7 +355,7 @@ public class MainTest {
 
 	}
 
-	private void textFuturesSepecifications() throws IOException {
+	private void testFuturesSepecifications() throws IOException {
 
 		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "CMER" }).build();
 
@@ -362,6 +367,19 @@ public class MainTest {
 
 		System.out.println("FuturesSpecifications for CME = " + results.byExchange("CME"));
 
+	}
+
+	private void testWeather() throws IOException {
+
+		final OnDemandRequest p = new WeatherRequest.Builder().zipCode("60614").build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("WeatherRequest ENDPOINT = " + url);
+
+		final Weather results = JsonUtil.fromJson(Weather.class, HttpUtil.fetchString(url));
+
+		System.out.println("Weather = " + results.all());
 	}
 
 }

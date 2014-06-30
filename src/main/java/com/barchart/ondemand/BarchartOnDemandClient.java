@@ -22,6 +22,7 @@ import com.barchart.ondemand.api.RatingsRequest;
 import com.barchart.ondemand.api.SDFuturesOptionsRequest;
 import com.barchart.ondemand.api.SignalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequest;
+import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
@@ -38,6 +39,7 @@ import com.barchart.ondemand.api.responses.ResponseBase;
 import com.barchart.ondemand.api.responses.SDFuturesOptions;
 import com.barchart.ondemand.api.responses.Signals;
 import com.barchart.ondemand.api.responses.Technicals;
+import com.barchart.ondemand.api.responses.Weather;
 import com.barchart.ondemand.util.JsonUtil;
 import com.barchart.ondemand.util.QueryUtil;
 import com.squareup.okhttp.OkHttpClient;
@@ -91,6 +93,7 @@ public class BarchartOnDemandClient {
 		responseMap.put(SDFuturesOptionsRequest.class, SDFuturesOptions.class);
 		responseMap.put(InstrumentDefinitionRequest.class, InstrumentDefinitions.class);
 		responseMap.put(FuturesSpecificationsRequest.class, FuturesSpecifications.class);
+		responseMap.put(WeatherRequest.class, Weather.class);
 	}
 
 	//
