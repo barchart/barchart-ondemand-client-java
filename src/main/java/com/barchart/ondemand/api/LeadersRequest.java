@@ -192,6 +192,19 @@ public class LeadersRequest implements OnDemandRequest {
 		}
 
 		public OnDemandRequest build() {
+
+			if (type == null) {
+				throw new IllegalArgumentException("you must set the type field, LeadersRequestType");
+			}
+
+			if (assetType == null) {
+				throw new IllegalArgumentException("you must set the assetType field, LeadersAssetType");
+			}
+
+			if (exchanges == null) {
+				throw new IllegalArgumentException("you must set the exchanges field, eg: new String[]{'NYSE'}");
+			}
+
 			return new LeadersRequest(this);
 		}
 	}

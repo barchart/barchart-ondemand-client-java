@@ -16,6 +16,7 @@ import com.barchart.ondemand.api.FuturesSpecificationsRequest;
 import com.barchart.ondemand.api.IncomeStatementRequest;
 import com.barchart.ondemand.api.IndexMembersRequest;
 import com.barchart.ondemand.api.InstrumentDefinitionRequest;
+import com.barchart.ondemand.api.LeadersRequest;
 import com.barchart.ondemand.api.OnDemandRequest;
 import com.barchart.ondemand.api.ProfileRequest;
 import com.barchart.ondemand.api.QuoteRequest;
@@ -33,6 +34,7 @@ import com.barchart.ondemand.api.responses.FuturesSpecifications;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
 import com.barchart.ondemand.api.responses.InstrumentDefinitions;
+import com.barchart.ondemand.api.responses.Leaders;
 import com.barchart.ondemand.api.responses.OnDemandResponse;
 import com.barchart.ondemand.api.responses.Profiles;
 import com.barchart.ondemand.api.responses.Quotes;
@@ -96,6 +98,7 @@ public class BarchartOnDemandClient {
 		responseMap.put(InstrumentDefinitionRequest.class, InstrumentDefinitions.class);
 		responseMap.put(FuturesSpecificationsRequest.class, FuturesSpecifications.class);
 		responseMap.put(WeatherRequest.class, Weather.class);
+		responseMap.put(LeadersRequest.class, Leaders.class);
 	}
 
 	//
@@ -116,11 +119,6 @@ public class BarchartOnDemandClient {
 		sb.append(apiKey);
 
 		final String response = fetchString(sb.toString(), http);
-
-		// OnDemandResponse resp =
-		// (Class.forName(responseMap.get(request.getClass()).getName());
-		// final OnDemandResponse base = new
-		// ResponseBase.Builder().client(this).request(request).build();
 
 		final ResponseBase base = (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
 
