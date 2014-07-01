@@ -48,4 +48,4 @@ for (Quote q : quotes.all()) {
 System.out.println("Quote by symbol = " + JsonUtil.intoJson(quotes.bySymbol("AAPL")));
 ```
 	
-[See how to use the client in your project here](https://github.com/barchart/barchart-ondemand-client-java)
+[See how to use the client in your project here](https://github.com/barchart/barchart-ondemand-example-java)
