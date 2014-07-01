@@ -1,4 +1,4 @@
-## Java client for Barchart OnDemand.
+## Java client for Barchart OnDemand
 
 ### Currently supports
 
@@ -25,9 +25,7 @@
 
 ### Example Code
 
-
-```
-
+```java
 private final BarchartOnDemandClient onDemand = new BarchartOnDemandClient.Builder().apiKey("CHANGE-ME").build();
 
 /* build a new getQuotes request */
