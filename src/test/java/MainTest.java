@@ -11,6 +11,9 @@ import com.barchart.ondemand.api.FuturesSpecificationsRequest;
 import com.barchart.ondemand.api.IncomeStatementRequest;
 import com.barchart.ondemand.api.IndexMembersRequest;
 import com.barchart.ondemand.api.InstrumentDefinitionRequest;
+import com.barchart.ondemand.api.LeadersRequest;
+import com.barchart.ondemand.api.LeadersRequest.LeadersAssetType;
+import com.barchart.ondemand.api.LeadersRequest.LeadersRequestType;
 import com.barchart.ondemand.api.MomentumRequest;
 import com.barchart.ondemand.api.OnDemandRequest;
 import com.barchart.ondemand.api.OnDemandRequest.GenericRequestField;
@@ -36,6 +39,7 @@ import com.barchart.ondemand.api.responses.FuturesSpecifications;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
 import com.barchart.ondemand.api.responses.InstrumentDefinitions;
+import com.barchart.ondemand.api.responses.Leaders;
 import com.barchart.ondemand.api.responses.Momentums;
 import com.barchart.ondemand.api.responses.Profiles;
 import com.barchart.ondemand.api.responses.Quotes;
@@ -65,6 +69,9 @@ public class MainTest {
 	}
 
 	public MainTest() throws IOException {
+
+		testLeaders();
+		sep();
 
 		testWeather();
 		sep();
@@ -380,6 +387,20 @@ public class MainTest {
 		final Weather results = JsonUtil.fromJson(Weather.class, HttpUtil.fetchString(url));
 
 		System.out.println("Weather = " + results.all());
+	}
+
+	private void testLeaders() throws IOException {
+
+		final OnDemandRequest p = new LeadersRequest.Builder().exchanges(new String[] { "NYSE" })
+				.type(LeadersRequestType.ACTIVE_YTD).assetType(LeadersAssetType.STOCK).build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("LeadersRequest ENDPOINT = " + url);
+
+		final Leaders results = JsonUtil.fromJson(Leaders.class, HttpUtil.fetchString(url));
+
+		System.out.println("Leaders (Active TYD for NYSE) = " + results.all());
 	}
 
 }
