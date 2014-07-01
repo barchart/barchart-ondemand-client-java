@@ -12,6 +12,13 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+	<scm>
+		<url>https://github.com/barchart/barchart-ondemand-client-java</url>
+		<connection>scm:git:git://github.com/barchart/barchart-ondemand-client-java.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:barchart/barchart-ondemand-client-java.git</developerConnection>
+		<tag>master</tag>
+	</scm>
+	
 	<dependencies>
 
 		<dependency>
