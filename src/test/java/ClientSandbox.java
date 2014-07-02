@@ -1,9 +1,10 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
-import com.barchart.ondemand.api.LeadersRequest;
-import com.barchart.ondemand.api.LeadersRequest.LeadersAssetType;
-import com.barchart.ondemand.api.LeadersRequest.LeadersRequestType;
-import com.barchart.ondemand.api.responses.Leader;
-import com.barchart.ondemand.api.responses.Leaders;
+import com.barchart.ondemand.api.MomentumRequest;
+import com.barchart.ondemand.api.SignalsRequest;
+import com.barchart.ondemand.api.responses.Momentum;
+import com.barchart.ondemand.api.responses.Momentums;
+import com.barchart.ondemand.api.responses.Signal;
+import com.barchart.ondemand.api.responses.Signals;
 
 public class ClientSandbox {
 
@@ -17,15 +18,14 @@ public class ClientSandbox {
 
 		onDemand = new BarchartOnDemandClient.Builder().apiKey(apiKey).debug(true).build();
 
-		final LeadersRequest.Builder builder = new LeadersRequest.Builder();
+		final MomentumRequest.Builder builder = new MomentumRequest.Builder();
 
-		builder.assetType(LeadersAssetType.STOCK);
-		builder.type(LeadersRequestType.GAINERS_5_DAY);
 		builder.exchanges(new String[] { "NYSE", "NASDAQ" });
-		final Leaders results = (Leaders) onDemand.fetch(builder.build());
 
-		for (Leader q : results.all()) {
-			System.out.println("Leader : [" + q.getExchange() + "] " + q.getSymbol() + " = " + q);
+		final Momentums results = (Momentums) onDemand.fetch(builder.build());
+
+		for (Momentum q : results.all()) {
+			System.out.println("Momentum : " + q.getExchange() + " = " + q);
 		}
 
 	}
