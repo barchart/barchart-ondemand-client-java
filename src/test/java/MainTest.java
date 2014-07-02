@@ -1,6 +1,7 @@
 import java.io.IOException;
 
 import com.barchart.ondemand.api.BalanceSheetsRequest;
+import com.barchart.ondemand.api.ChartRequest;
 import com.barchart.ondemand.api.CompetitorsRequest;
 import com.barchart.ondemand.api.CompetitorsRequest.CompetitorsRequestField;
 import com.barchart.ondemand.api.CorporateActionsRequest;
@@ -30,6 +31,7 @@ import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
 import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
+import com.barchart.ondemand.api.responses.Charts;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
 import com.barchart.ondemand.api.responses.FinancialHighlights;
@@ -69,6 +71,9 @@ public class MainTest {
 	}
 
 	public MainTest() throws IOException {
+
+		testCharts();
+		sep();
 
 		testLeaders();
 		sep();
@@ -401,6 +406,19 @@ public class MainTest {
 		final Leaders results = JsonUtil.fromJson(Leaders.class, HttpUtil.fetchString(url));
 
 		System.out.println("Leaders (Active TYD for NYSE) = " + results.all());
+	}
+
+	private void testCharts() throws IOException {
+
+		final OnDemandRequest p = new ChartRequest.Builder().symbols(new String[] { "GOOG", "NEM" }).build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("ChartRequest ENDPOINT = " + url);
+
+		final Charts results = JsonUtil.fromJson(Charts.class, HttpUtil.fetchString(url));
+
+		System.out.println("Charts = " + results.all());
 	}
 
 }
