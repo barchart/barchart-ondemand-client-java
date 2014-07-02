@@ -48,7 +48,7 @@ public class LeadersRequest implements OnDemandRequest {
 			case ACTIVE: // Active
 				return "active";
 			case ACTIVE_5_DAY:
-				return "active_5day";
+				return "active_5d";
 			case ACTIVE_1_MONTH:
 				return "active_1m";
 			case ACTIVE_3_MONTH:
@@ -62,9 +62,9 @@ public class LeadersRequest implements OnDemandRequest {
 			case ACTIVE_YTD:
 				return "active_ytd";
 			case GAINERS: // Gainers
-				return "active";
+				return "gainers";
 			case GAINERS_5_DAY:
-				return "active_5day";
+				return "gainers_5d";
 			case GAINERS_1_MONTH:
 				return "gainers_1m";
 			case GAINERS_3_MONTH:
@@ -80,7 +80,7 @@ public class LeadersRequest implements OnDemandRequest {
 			case LOSERS: // Losers
 				return "losers";
 			case LOSERS_5_DAY:
-				return "losers_5day";
+				return "losers_5d";
 			case LOSERS_1_MONTH:
 				return "losers_1m";
 			case LOSERS_3_MONTH:

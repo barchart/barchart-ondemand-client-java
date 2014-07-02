@@ -1,7 +1,9 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
-import com.barchart.ondemand.api.CorporateActionsRequest;
-import com.barchart.ondemand.api.responses.CorporateAction;
-import com.barchart.ondemand.api.responses.CorporateActions;
+import com.barchart.ondemand.api.LeadersRequest;
+import com.barchart.ondemand.api.LeadersRequest.LeadersAssetType;
+import com.barchart.ondemand.api.LeadersRequest.LeadersRequestType;
+import com.barchart.ondemand.api.responses.Leader;
+import com.barchart.ondemand.api.responses.Leaders;
 
 public class ClientSandbox {
 
@@ -15,14 +17,15 @@ public class ClientSandbox {
 
 		onDemand = new BarchartOnDemandClient.Builder().apiKey(apiKey).debug(true).build();
 
-		final CorporateActionsRequest.Builder builder = new CorporateActionsRequest.Builder();
+		final LeadersRequest.Builder builder = new LeadersRequest.Builder();
 
-		builder.symbols(new String[] { "AAPL", "GOOG" });
+		builder.assetType(LeadersAssetType.STOCK);
+		builder.type(LeadersRequestType.GAINERS_5_DAY);
+		builder.exchanges(new String[] { "NYSE", "NASDAQ" });
+		final Leaders results = (Leaders) onDemand.fetch(builder.build());
 
-		final CorporateActions results = (CorporateActions) onDemand.fetch(builder.build());
-
-		for (CorporateAction q : results.all()) {
-			System.out.println("CorporateAction : " + q.getSymbol() + " = " + q);
+		for (Leader q : results.all()) {
+			System.out.println("Leader : [" + q.getExchange() + "] " + q.getSymbol() + " = " + q);
 		}
 
 	}
