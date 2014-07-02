@@ -13,6 +13,11 @@ public class FuturesSpecifications extends ResponseBase {
 	private final List<FuturesSpecification> results = new ArrayList<FuturesSpecification>();
 
 	public Collection<FuturesSpecification> all() {
+
+		if (isEmpty()) {
+			return new ArrayList<FuturesSpecification>();
+		}
+
 		return Collections.unmodifiableCollection(results);
 	}
 

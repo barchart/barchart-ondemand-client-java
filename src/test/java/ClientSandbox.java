@@ -1,10 +1,8 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
-import com.barchart.ondemand.api.MomentumRequest;
-import com.barchart.ondemand.api.SignalsRequest;
-import com.barchart.ondemand.api.responses.Momentum;
-import com.barchart.ondemand.api.responses.Momentums;
-import com.barchart.ondemand.api.responses.Signal;
-import com.barchart.ondemand.api.responses.Signals;
+import com.barchart.ondemand.api.WeatherRequest;
+import com.barchart.ondemand.api.WeatherRequest.WeatherRequestType;
+import com.barchart.ondemand.api.responses.Weather;
+import com.barchart.ondemand.api.responses.WeatherForecast;
 
 public class ClientSandbox {
 
@@ -18,14 +16,15 @@ public class ClientSandbox {
 
 		onDemand = new BarchartOnDemandClient.Builder().apiKey(apiKey).debug(true).build();
 
-		final MomentumRequest.Builder builder = new MomentumRequest.Builder();
+		final WeatherRequest.Builder builder = new WeatherRequest.Builder();
 
-		builder.exchanges(new String[] { "NYSE", "NASDAQ" });
+		builder.zipCode("60606");
+		builder.weatherType(WeatherRequestType.FORECAST);
 
-		final Momentums results = (Momentums) onDemand.fetch(builder.build());
+		final Weather results = (Weather) onDemand.fetch(builder.build());
 
-		for (Momentum q : results.all()) {
-			System.out.println("Momentum : " + q.getExchange() + " = " + q);
+		for (WeatherForecast q : results.all()) {
+			System.out.println("WeatherForecast : " + q.getFeelsLike() + " = " + q);
 		}
 
 	}
