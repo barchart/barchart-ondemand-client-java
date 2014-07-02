@@ -72,6 +72,7 @@ public class BarchartOnDemandClient {
 	private final String apiKey;
 	private final String baseUrl;
 	private final long cacheTime;
+	private final boolean debug;
 
 	private final OkHttpClient http = new OkHttpClient();
 
@@ -83,6 +84,7 @@ public class BarchartOnDemandClient {
 		this.apiKey = b.apiKey;
 		this.baseUrl = b.baseUrl;
 		this.cacheTime = b.cacheTime;
+		this.debug = b.debug;
 
 		responseMap.put(QuoteRequest.class, Quotes.class);
 		responseMap.put(TechnicalsRequest.class, Technicals.class);
@@ -123,8 +125,10 @@ public class BarchartOnDemandClient {
 
 		final String response = fetchString(sb.toString(), http);
 
-		System.out.println("response = " + response);
-		
+		if (debug) {
+			System.out.println("query URL = " + sb.toString());
+			System.out.println("response = " + response);
+		}
 		final ResponseBase base = (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
 
 		base.configure(request, this);
@@ -139,7 +143,9 @@ public class BarchartOnDemandClient {
 
 			JsonUtil.update(response, fetchApiString(response.getRequest(), http));
 
-			System.out.println("Updated: " + response.getRequest().name() + " @ " + new Date());
+			if (debug) {
+				System.out.println("Updated: " + response.getRequest().name() + " @ " + new Date());
+			}
 
 			return true;
 		} catch (Exception e) {
@@ -185,6 +191,7 @@ public class BarchartOnDemandClient {
 		private String baseUrl = "http://ondemand.websol.barchart.com/";
 		private String apiKey;
 		private long cacheTime = 10000;
+		private boolean debug = false;
 
 		public Builder baseUrl(final String baseUrl) {
 			this.baseUrl = baseUrl;
@@ -198,6 +205,11 @@ public class BarchartOnDemandClient {
 
 		public Builder cacheTime(final long cacheTime) {
 			this.cacheTime = Math.max(3000, cacheTime);
+			return this;
+		}
+
+		public Builder debug(final boolean debug) {
+			this.debug = debug;
 			return this;
 		}
 
