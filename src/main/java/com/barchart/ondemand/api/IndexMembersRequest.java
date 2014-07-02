@@ -3,8 +3,6 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-
 public class IndexMembersRequest implements OnDemandRequest {
 
 	private final String symbol;

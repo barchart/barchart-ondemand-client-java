@@ -1,6 +1,9 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
+import com.barchart.ondemand.api.ChartRequest;
 import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.WeatherRequest.WeatherRequestType;
+import com.barchart.ondemand.api.responses.Chart;
+import com.barchart.ondemand.api.responses.Charts;
 import com.barchart.ondemand.api.responses.Weather;
 import com.barchart.ondemand.api.responses.WeatherForecast;
 
@@ -16,15 +19,14 @@ public class ClientSandbox {
 
 		onDemand = new BarchartOnDemandClient.Builder().apiKey(apiKey).debug(true).build();
 
-		final WeatherRequest.Builder builder = new WeatherRequest.Builder();
+		final ChartRequest.Builder builder = new ChartRequest.Builder();
 
-		builder.zipCode("60606");
-		builder.weatherType(WeatherRequestType.FORECAST);
+		builder.symbols(new String[] { "AAPL", "AMZN" });
 
-		final Weather results = (Weather) onDemand.fetch(builder.build());
+		final Charts results = (Charts) onDemand.fetch(builder.build());
 
-		for (WeatherForecast q : results.all()) {
-			System.out.println("WeatherForecast : " + q.getFeelsLike() + " = " + q);
+		for (Chart q : results.all()) {
+			System.out.println("Chart : " + q.getSymbol() + " = " + q);
 		}
 
 	}
