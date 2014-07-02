@@ -123,6 +123,8 @@ public class BarchartOnDemandClient {
 
 		final String response = fetchString(sb.toString(), http);
 
+		System.out.println("response = " + response);
+		
 		final ResponseBase base = (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
 
 		base.configure(request, this);

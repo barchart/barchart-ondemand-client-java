@@ -7,14 +7,14 @@ import org.apache.commons.lang.StringUtils;
 
 public class IndexMembersRequest implements OnDemandRequest {
 
-	private final String symbols;
+	private final String symbol;
 	private final String fields;
 
 	private final Map<String, Object> params = new HashMap<String, Object>();
 
 	private IndexMembersRequest(final Builder b) {
 
-		this.symbols = StringUtils.join(b.symbols, ",");
+		this.symbol = b.symbol;
 
 		this.fields = "";
 
@@ -35,7 +35,7 @@ public class IndexMembersRequest implements OnDemandRequest {
 	@Override
 	public Map<String, Object> parameters() {
 
-		params.put("symbols", symbols);
+		params.put("symbol", symbol);
 
 		if (!fields.isEmpty()) {
 			params.put("fields", fields);
@@ -45,10 +45,10 @@ public class IndexMembersRequest implements OnDemandRequest {
 	}
 
 	public static class Builder {
-		private String[] symbols;
+		private String symbol;
 
-		public Builder symbols(final String[] symbols) {
-			this.symbols = symbols;
+		public Builder symbol(final String symbol) {
+			this.symbol = symbol;
 			return this;
 		}
 

@@ -243,7 +243,7 @@ public class MainTest {
 
 	private void testIndexMembers() throws IOException {
 
-		final OnDemandRequest p = new IndexMembersRequest.Builder().symbols(new String[] { "$ONE", "$IDX" }).build();
+		final OnDemandRequest p = new IndexMembersRequest.Builder().symbol("$ONE").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
