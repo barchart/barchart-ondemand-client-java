@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SDFuturesOptions extends ResponseBase {
 
 	@JsonProperty("results")
-	public List<FuturesOption> results = new ArrayList<FuturesOption>();
+	public List<SDFuturesOption> results = new ArrayList<SDFuturesOption>();
 
-	public Collection<FuturesOption> all() {
+	public Collection<SDFuturesOption> all() {
 		return Collections.unmodifiableCollection(results);
 	}
 
-	public Collection<FuturesOption> calls() {
+	public Collection<SDFuturesOption> calls() {
 
-		final List<FuturesOption> results = new ArrayList<FuturesOption>();
-		for (FuturesOption f : all()) {
+		final List<SDFuturesOption> results = new ArrayList<SDFuturesOption>();
+		for (SDFuturesOption f : all()) {
 			if (f.getType() != null && f.getType().equalsIgnoreCase("call")) {
 				results.add(f);
 			}
@@ -28,10 +28,10 @@ public class SDFuturesOptions extends ResponseBase {
 		return results;
 	}
 
-	public Collection<FuturesOption> puts() {
+	public Collection<SDFuturesOption> puts() {
 
-		final List<FuturesOption> results = new ArrayList<FuturesOption>();
-		for (FuturesOption f : all()) {
+		final List<SDFuturesOption> results = new ArrayList<SDFuturesOption>();
+		for (SDFuturesOption f : all()) {
 			if (f.getType() != null && f.getType().equalsIgnoreCase("put")) {
 				results.add(f);
 			}
