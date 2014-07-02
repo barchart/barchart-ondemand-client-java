@@ -1,5 +1,7 @@
 ## Java client for Barchart OnDemand
 
+[Check out some examples here](https://github.com/barchart/barchart-ondemand-client-java/wiki/Fetching-Data)
+
 ### Currently supports
 
 * getQuote
