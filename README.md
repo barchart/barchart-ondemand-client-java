@@ -52,3 +52,16 @@ for (Quote q : quotes.all()) {
 System.out.println("Quote by symbol = " + JsonUtil.intoJson(quotes.bySymbol("AAPL")));
 ```
 	
+### Adding to your project
+
+##### Plain Jar
+[Download the latest version here](https://github.com/barchart/barchart-ondemand-client-java/releases/tag/barchart-ondemand-client-1.0.3)
+
+##### Maven
+```xml
+<dependency>
+	<groupId>com.barchart.base</groupId>
+	<artifactId>barchart-ondemand-client</artifactId>
+	<version>1.0.3</version>
+</dependency>
+```
