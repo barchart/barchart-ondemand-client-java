@@ -9,7 +9,7 @@
 
 	<artifactId>barchart-ondemand-client</artifactId>
 	<version>1.0.5-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging>
 
 	<scm>
 		<url>https://github.com/barchart/barchart-ondemand-client-java</url>

@@ -37,6 +37,7 @@ import com.barchart.ondemand.api.responses.CorporateActions;
 import com.barchart.ondemand.api.responses.FinancialHighlights;
 import com.barchart.ondemand.api.responses.FinancialRatios;
 import com.barchart.ondemand.api.responses.FuturesOptions;
+import com.barchart.ondemand.api.responses.FuturesSpecification;
 import com.barchart.ondemand.api.responses.FuturesSpecifications;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
@@ -72,6 +73,15 @@ public class MainTest {
 
 	public MainTest() throws IOException {
 
+		if(true){
+			testFuturesSepecifications();
+			sep();
+			return;
+		}
+		
+		testSDFuturesOptions();
+		sep();
+		
 		testCharts();
 		sep();
 
@@ -81,8 +91,7 @@ public class MainTest {
 		testWeather();
 		sep();
 
-		testFuturesSepecifications();
-		sep();
+		
 
 		testMomentums();
 		sep();
@@ -300,7 +309,7 @@ public class MainTest {
 
 	private void testSDFuturesOptions() throws IOException {
 
-		final OnDemandRequest p = new SDFuturesOptionsRequest.Builder().root("ZC").build();
+		final OnDemandRequest p = new SDFuturesOptionsRequest.Builder().contract("ZCJ14").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -369,7 +378,7 @@ public class MainTest {
 
 	private void testFuturesSepecifications() throws IOException {
 
-		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "GLBX" }).build();
+		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "LME" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -377,7 +386,11 @@ public class MainTest {
 
 		final FuturesSpecifications results = JsonUtil.fromJson(FuturesSpecifications.class, HttpUtil.fetchString(url));
 
-		System.out.println("FuturesSpecifications for GLBX = " + results.byExchange("GLBX"));
+		for(FuturesSpecification s : results.byExchange("LME")){
+			System.out.println("S = " + s);
+		}
+		
+		System.out.println("FuturesSpecifications for GLBX = " + results.byExchange("LME"));
 
 	}
 
