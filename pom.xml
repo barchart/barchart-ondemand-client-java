@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.barchart.base</groupId>
@@ -17,7 +18,7 @@
 		<developerConnection>scm:git:ssh://git@github.com/barchart/barchart-ondemand-client-java.git</developerConnection>
 		<tag>master</tag>
 	</scm>
-	
+
 	<dependencies>
 
 		<dependency>
@@ -38,7 +39,7 @@
 		<!-- http client from Square -->
 		<dependency>
 			<groupId>com.squareup.okhttp</groupId>
-			<artifactId>okhttp</artifactId>
+			<artifactId>okhttp-wrapped</artifactId>
 			<version>2.0.0</version>
 		</dependency>
 
@@ -55,8 +56,31 @@
 	</dependencies>
 
 	<build>
-		<finalName>ondemand-client</finalName>
+		<finalName>barchart-ondemand-client</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>commons-lang:*</exclude>
+									<exclude>ch.qos.logback:*</exclude>
+									<exclude>com.fasterxml.jackson.core:*</exclude>
+									<exclude>org.slf4j:*</exclude>
+								</excludes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -81,5 +105,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
