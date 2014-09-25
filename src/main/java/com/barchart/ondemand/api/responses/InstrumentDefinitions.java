@@ -13,6 +13,9 @@ public class InstrumentDefinitions extends ResponseBase {
 	private final List<InstrumentDefinition> results = new ArrayList<InstrumentDefinition>();
 
 	public Collection<InstrumentDefinition> all() {
+		if (results == null) {
+			return new ArrayList<InstrumentDefinition>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

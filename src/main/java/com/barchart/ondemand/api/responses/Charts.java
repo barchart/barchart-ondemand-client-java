@@ -13,6 +13,9 @@ public class Charts extends ResponseBase {
 	private final List<Chart> results = new ArrayList<Chart>();
 
 	public Collection<Chart> all() {
+		if (results == null) {
+			return new ArrayList<Chart>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

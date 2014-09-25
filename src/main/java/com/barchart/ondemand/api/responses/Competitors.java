@@ -13,6 +13,9 @@ public class Competitors extends ResponseBase {
 	private final List<Competitor> results = new ArrayList<Competitor>();
 
 	public Collection<Competitor> all() {
+		if (results == null) {
+			return new ArrayList<Competitor>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

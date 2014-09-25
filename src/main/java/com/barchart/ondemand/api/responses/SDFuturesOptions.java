@@ -13,6 +13,9 @@ public class SDFuturesOptions extends ResponseBase {
 	public List<SDFuturesOption> results = new ArrayList<SDFuturesOption>();
 
 	public Collection<SDFuturesOption> all() {
+		if (results == null) {
+			return new ArrayList<SDFuturesOption>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

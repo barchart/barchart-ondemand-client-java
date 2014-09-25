@@ -11,6 +11,9 @@ public class Leaders extends ResponseBase {
 	private final List<Leader> results = new ArrayList<Leader>();
 
 	public List<Leader> all() {
+		if (results == null) {
+			return new ArrayList<Leader>();
+		}
 		return results;
 	}
 

@@ -21,6 +21,9 @@ public class CorporateActions extends ResponseBase {
 	}
 
 	public Collection<CorporateAction> all() {
+		if (results == null) {
+			return new ArrayList<CorporateAction>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

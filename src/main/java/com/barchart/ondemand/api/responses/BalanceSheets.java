@@ -13,6 +13,9 @@ public class BalanceSheets extends ResponseBase {
 	private final List<BalanceSheet> results = new ArrayList<BalanceSheet>();
 
 	public Collection<BalanceSheet> all() {
+		if (results == null) {
+			return new ArrayList<BalanceSheet>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

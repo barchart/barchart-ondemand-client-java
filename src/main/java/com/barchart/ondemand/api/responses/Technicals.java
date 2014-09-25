@@ -11,6 +11,9 @@ public class Technicals extends ResponseBase {
 	private final List<Technical> results = new ArrayList<Technical>();
 
 	public List<Technical> all() {
+		if (results == null) {
+			return new ArrayList<Technical>();
+		}
 		return results;
 	}
 

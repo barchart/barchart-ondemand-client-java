@@ -13,6 +13,9 @@ public class FuturesOptions extends ResponseBase {
 	public List<FuturesOption> results = new ArrayList<FuturesOption>();
 
 	public Collection<FuturesOption> all() {
+		if (results == null) {
+			return new ArrayList<FuturesOption>();
+		}
 		return Collections.unmodifiableCollection(results);
 	}
 

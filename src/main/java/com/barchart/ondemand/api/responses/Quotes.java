@@ -11,6 +11,9 @@ public class Quotes extends ResponseBase {
 	private final List<Quote> results = new ArrayList<Quote>();
 
 	public List<Quote> all() {
+		if (results == null) {
+			return new ArrayList<Quote>();
+		}
 		return results;
 	}
 

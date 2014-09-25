@@ -29,6 +29,7 @@ import com.barchart.ondemand.api.SignalsRequest;
 import com.barchart.ondemand.api.SignalsRequestField;
 import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
+import com.barchart.ondemand.api.USDAGrainsRequest;
 import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
 import com.barchart.ondemand.api.responses.Charts;
@@ -51,6 +52,7 @@ import com.barchart.ondemand.api.responses.Ratings;
 import com.barchart.ondemand.api.responses.SDFuturesOptions;
 import com.barchart.ondemand.api.responses.Signals;
 import com.barchart.ondemand.api.responses.Technicals;
+import com.barchart.ondemand.api.responses.USDAGrains;
 import com.barchart.ondemand.api.responses.Weather;
 import com.barchart.ondemand.util.HttpUtil;
 import com.barchart.ondemand.util.JsonUtil;
@@ -73,15 +75,15 @@ public class MainTest {
 
 	public MainTest() throws IOException {
 
-		if(true){
-			testFuturesSepecifications();
-			sep();
-			return;
-		}
-		
+		testFuturesSepecifications();
+		sep();
+
+		testUSDAGrains();
+		sep();
+
 		testSDFuturesOptions();
 		sep();
-		
+
 		testCharts();
 		sep();
 
@@ -90,8 +92,6 @@ public class MainTest {
 
 		testWeather();
 		sep();
-
-		
 
 		testMomentums();
 		sep();
@@ -386,10 +386,10 @@ public class MainTest {
 
 		final FuturesSpecifications results = JsonUtil.fromJson(FuturesSpecifications.class, HttpUtil.fetchString(url));
 
-		for(FuturesSpecification s : results.byExchange("LME")){
+		for (FuturesSpecification s : results.byExchange("LME")) {
 			System.out.println("S = " + s);
 		}
-		
+
 		System.out.println("FuturesSpecifications for GLBX = " + results.byExchange("LME"));
 
 	}
@@ -432,6 +432,19 @@ public class MainTest {
 		final Charts results = JsonUtil.fromJson(Charts.class, HttpUtil.fetchString(url));
 
 		System.out.println("Charts = " + results.all());
+	}
+
+	private void testUSDAGrains() throws IOException {
+
+		final OnDemandRequest p = new USDAGrainsRequest.Builder().build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("USDAGrainsRequest ENDPOINT = " + url);
+
+		final USDAGrains results = JsonUtil.fromJson(USDAGrains.class, HttpUtil.fetchString(url));
+
+		System.out.println("USDAGrains = " + results.all());
 	}
 
 }

@@ -10,10 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FinancialHighlights extends ResponseBase {
 
 	@JsonProperty("results")
-	private final List<FinancialHighlight> highlights = new ArrayList<FinancialHighlight>();
+	private final List<FinancialHighlight> results = new ArrayList<FinancialHighlight>();
 
 	public Collection<FinancialHighlight> all() {
-		return Collections.unmodifiableCollection(highlights);
+		if (results == null) {
+			return new ArrayList<FinancialHighlight>();
+		}
+		return Collections.unmodifiableCollection(results);
 	}
 
 	public FinancialHighlight bySymbol(final String symbol) {
@@ -21,7 +24,7 @@ public class FinancialHighlights extends ResponseBase {
 			return null;
 		}
 
-		for (FinancialHighlight fh : highlights) {
+		for (FinancialHighlight fh : results) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

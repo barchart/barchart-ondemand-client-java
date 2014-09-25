@@ -11,6 +11,9 @@ public class Momentums extends ResponseBase {
 	private final List<Momentum> results = new ArrayList<Momentum>();
 
 	public List<Momentum> all() {
+		if (results == null) {
+			return new ArrayList<Momentum>();
+		}
 		return results;
 	}
 
