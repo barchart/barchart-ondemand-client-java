@@ -26,6 +26,7 @@
 * getFuturesSpecifications
 * getFuturesExpirations
 * getWeather
+* getUSDAGrainPrices
 
 ### Example Code
 
