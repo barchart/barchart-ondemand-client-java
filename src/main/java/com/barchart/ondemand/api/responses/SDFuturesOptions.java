@@ -57,6 +57,18 @@ public class SDFuturesOptions extends ResponseBase {
 		return results;
 	}
 
+	public Collection<String> allContractMonths() {
+		final List<String> results = new ArrayList<String>();
+
+		for (SDFuturesOption f : all()) {
+			if (!results.contains(f.getContractMonth())) {
+				results.add(f.getContractMonth());
+			}
+		}
+
+		return results;
+	}
+
 	public Collection<String> allExpirations() {
 		final List<String> results = new ArrayList<String>();
 
