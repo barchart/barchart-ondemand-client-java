@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.util.Map.Entry;
+
+import org.joda.time.DateTime;
 
 import com.barchart.ondemand.api.BalanceSheetsRequest;
 import com.barchart.ondemand.api.ChartRequest;
@@ -9,6 +12,7 @@ import com.barchart.ondemand.api.FinancialHighlightRequest;
 import com.barchart.ondemand.api.FinancialRatioRequest;
 import com.barchart.ondemand.api.FuturesOptionsRequest;
 import com.barchart.ondemand.api.FuturesSpecificationsRequest;
+import com.barchart.ondemand.api.HistoryRequest;
 import com.barchart.ondemand.api.IncomeStatementRequest;
 import com.barchart.ondemand.api.IndexMembersRequest;
 import com.barchart.ondemand.api.InstrumentDefinitionRequest;
@@ -40,6 +44,7 @@ import com.barchart.ondemand.api.responses.FinancialRatios;
 import com.barchart.ondemand.api.responses.FuturesOptions;
 import com.barchart.ondemand.api.responses.FuturesSpecification;
 import com.barchart.ondemand.api.responses.FuturesSpecifications;
+import com.barchart.ondemand.api.responses.History;
 import com.barchart.ondemand.api.responses.IncomeStatements;
 import com.barchart.ondemand.api.responses.IndexMembers;
 import com.barchart.ondemand.api.responses.InstrumentDefinitions;
@@ -75,13 +80,18 @@ public class MainTest {
 
 	public MainTest() throws IOException {
 
+		if (true) {
+			testHistory();
+			return;
+		}
+
+		testSDFuturesOptions();
+		sep();
+
 		testFuturesSepecifications();
 		sep();
 
 		testUSDAGrains();
-		sep();
-
-		testSDFuturesOptions();
 		sep();
 
 		testCharts();
@@ -145,6 +155,22 @@ public class MainTest {
 
 	private void sep() {
 		System.out.println("------\\\\");
+	}
+
+	private void testHistory() throws IOException {
+
+		final HistoryRequest.Builder builder = new HistoryRequest.Builder().symbol("AAPL")
+				.start(new DateTime(2012, 2, 3, 11, 11)).end(new DateTime(2012, 3, 3, 11, 11));
+
+		final OnDemandRequest p = builder.build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("HistoryRequest ENDPOINT = " + url);
+
+		final History history = JsonUtil.fromJson(History.class, HttpUtil.fetchString(url));
+
+		System.out.println("History = " + history.all());
 	}
 
 	private void testProfiles() throws IOException {
@@ -309,7 +335,7 @@ public class MainTest {
 
 	private void testSDFuturesOptions() throws IOException {
 
-		final OnDemandRequest p = new SDFuturesOptionsRequest.Builder().contract("ZCJ14").build();
+		final OnDemandRequest p = new SDFuturesOptionsRequest.Builder().root("ZC").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -317,7 +343,13 @@ public class MainTest {
 
 		final SDFuturesOptions results = JsonUtil.fromJson(SDFuturesOptions.class, HttpUtil.fetchString(url));
 
-		System.out.println("SDFuturesOptions = " + results.calls());
+		for (Entry<String, SDFuturesOptions> sets : results.expirationsForMonth("Z").entrySet()) {
+
+			System.out.println("SDFuturesOptions, Z, EXP = " + sets.getKey() + " = " + sets.getValue().calls());
+
+		}
+
+		//
 	}
 
 	private void testTechnicals() throws IOException {
