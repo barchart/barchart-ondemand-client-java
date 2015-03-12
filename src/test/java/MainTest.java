@@ -31,6 +31,7 @@ import com.barchart.ondemand.api.RatingsRequest.RatingsRequestField;
 import com.barchart.ondemand.api.SDFuturesOptionsRequest;
 import com.barchart.ondemand.api.SignalsRequest;
 import com.barchart.ondemand.api.SignalsRequestField;
+import com.barchart.ondemand.api.SpecialOptionsClassificationRequest;
 import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
 import com.barchart.ondemand.api.USDAGrainsRequest;
@@ -56,6 +57,9 @@ import com.barchart.ondemand.api.responses.Rating.RatingType;
 import com.barchart.ondemand.api.responses.Ratings;
 import com.barchart.ondemand.api.responses.SDFuturesOptions;
 import com.barchart.ondemand.api.responses.Signals;
+import com.barchart.ondemand.api.responses.SpecialOption;
+import com.barchart.ondemand.api.responses.SpecialOptionsCategory;
+import com.barchart.ondemand.api.responses.SpecialOptionsClassifications;
 import com.barchart.ondemand.api.responses.Technicals;
 import com.barchart.ondemand.api.responses.USDAGrains;
 import com.barchart.ondemand.api.responses.Weather;
@@ -81,9 +85,12 @@ public class MainTest {
 	public MainTest() throws IOException {
 
 		if (true) {
-			testHistory();
+			testSpecialOptions();
 			return;
 		}
+
+		testHistory();
+		sep();
 
 		testSDFuturesOptions();
 		sep();
@@ -155,6 +162,31 @@ public class MainTest {
 
 	private void sep() {
 		System.out.println("------\\\\");
+	}
+
+	private void testSpecialOptions() throws IOException {
+
+		final SpecialOptionsClassificationRequest.Builder builder = new SpecialOptionsClassificationRequest.Builder()
+				.root("ZC");
+
+		final OnDemandRequest p = builder.build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("SpecialOptionsClassificationRequest ENDPOINT = " + url);
+
+		final SpecialOptionsClassifications classifications = JsonUtil.fromJson(SpecialOptionsClassifications.class,
+				HttpUtil.fetchString(url));
+
+		System.out.println("SpecialOptionsClassifications = " + classifications.forRoot("ZC"));
+
+		for (SpecialOptionsCategory soc : classifications.forRoot("ZC").getCategories()) {
+			System.out.println("Category: " + soc.getName());
+			for (SpecialOption so : soc.getOptionsTypes()) {
+				System.out.println("Type: " + so.getName() + " Symbol: " + so.getSymbol());
+			}
+		}
+
 	}
 
 	private void testHistory() throws IOException {
