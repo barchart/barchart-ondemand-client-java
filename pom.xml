@@ -9,7 +9,7 @@
 
 
 	<artifactId>barchart-ondemand-client</artifactId>
-	<version>1.0.7-SNAPSHOT</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<scm>
@@ -81,7 +81,7 @@
 									<exclude>ch.qos.logback:*</exclude>
 									<exclude>com.fasterxml.jackson.core:*</exclude>
 									<exclude>org.slf4j:*</exclude>
-									<exclude>org.joda.*</exclude>
+									<exclude>joda-time:*</exclude>
 								</excludes>
 							</artifactSet>
 						</configuration>
