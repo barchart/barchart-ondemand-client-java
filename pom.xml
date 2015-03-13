@@ -81,6 +81,7 @@
 									<exclude>ch.qos.logback:*</exclude>
 									<exclude>com.fasterxml.jackson.core:*</exclude>
 									<exclude>org.slf4j:*</exclude>
+									<exclude>org.joda.*</exclude>
 								</excludes>
 							</artifactSet>
 						</configuration>
