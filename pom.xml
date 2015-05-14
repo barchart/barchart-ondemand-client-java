@@ -8,14 +8,14 @@
 
 
 	<artifactId>barchart-ondemand-client</artifactId>
-	<version>1.0.11-SNAPSHOT</version>
+	<version>1.0.11</version>
 	<packaging>bundle</packaging>
 
 	<scm>
 		<url>https://github.com/barchart/barchart-ondemand-client-java</url>
 		<connection>scm:git:git://github.com/barchart/barchart-ondemand-client-java.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/barchart/barchart-ondemand-client-java.git</developerConnection>
-		<tag>barchart-ondemand-client-1.0.8</tag>
+		<tag>barchart-ondemand-client-1.0.11</tag>
 	</scm>
 
 	<dependencies>
