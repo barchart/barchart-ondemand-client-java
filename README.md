@@ -63,6 +63,6 @@ System.out.println("Quote by symbol = " + JsonUtil.intoJson(quotes.bySymbol("AAP
 <dependency>
 	<groupId>com.barchart.base</groupId>
 	<artifactId>barchart-ondemand-client</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.13</version>
 </dependency>
 ```
