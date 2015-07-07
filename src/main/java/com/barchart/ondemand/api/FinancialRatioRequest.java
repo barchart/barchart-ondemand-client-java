@@ -8,21 +8,16 @@ import org.apache.commons.lang.StringUtils;
 public class FinancialRatioRequest implements OnDemandRequest {
 
 	public enum FinancialRatioRequestField {
-		DEBT_EQUITY, INTEREST_COVERAGE, BOOK_VALUE, DIVIDEND_PAYOUT;
+		DEBT_EQUITY("debtEquity"), INTEREST_COVERAGE("interestCoverage"), BOOK_VALUE("bookValue"), DIVIDEND_PAYOUT("dividendPayout");
 
-		public String getValue(FinancialRatioRequestField field) {
-			switch (field) {
-			case DEBT_EQUITY:
-				return "debtEquity";
-			case INTEREST_COVERAGE:
-				return "interestCoverage";
-			case BOOK_VALUE:
-				return "bookValue";
-			case DIVIDEND_PAYOUT:
-				return "dividendPayout";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private FinancialRatioRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 	}
 
@@ -42,7 +37,7 @@ public class FinancialRatioRequest implements OnDemandRequest {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			this.fields = sb.toString();

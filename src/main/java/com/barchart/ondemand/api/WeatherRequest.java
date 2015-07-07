@@ -6,54 +6,49 @@ import java.util.Map;
 public class WeatherRequest implements OnDemandRequest {
 
 	public enum WeatherRequestType {
-		CURRENT_CONTIDIONS, FORECAST, MAP;
+		CURRENT_CONTIDIONS("CC"), FORECAST("F"), MAP("MAP");
+
+		private final String value;
+
+		private WeatherRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(WeatherRequestType field) {
 			if (field == null) {
 				return "CC";
 			}
-			switch (field) {
-			case CURRENT_CONTIDIONS:
-				return "CC";
-			case FORECAST:
-				return "F";
-			case MAP:
-				return "MAP";
-			default:
-				return "CC";
-			}
+			return field.getValue();
 		}
 
 	}
 
 	public enum WeatherRequestMapType {
-		LOCAL_RADAR_ANIMATION, US_RADAR_SATELLITE, US_RADAR_SATELLITE_ANIMATION, TODAYS_WEATHER_MAP, //
-		CURRENT_WIND_CONDITIONS, TODAYS_PRECIP_ACC, DAILY_PRECIP, US_SOIL_MOISTUE, US_CURRENT_TEMPS;
+		LOCAL_RADAR_ANIMATION("localRadarAnimation"), US_RADAR_SATELLITE("usRadarSatellite"),
+		US_RADAR_SATELLITE_ANIMATION("usRadarSatelliteAnimation"), TODAYS_WEATHER_MAP("todaysWeatherMap"),
+		CURRENT_WIND_CONDITIONS("currentWindConditions"), TODAYS_PRECIP_ACC("todaysPrecipitationAccumulation"),
+		DAILY_PRECIP("dailyPrecipitation"), US_SOIL_MOISTUE("usSoilMoisture"),
+		US_CURRENT_TEMPS("usCurrentTemperatures");
+
+		private final String value;
+
+		private WeatherRequestMapType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(WeatherRequestMapType field) {
 			if (field == null) {
 				return "todaysWeatherMap";
 			}
-			switch (field) {
-			case LOCAL_RADAR_ANIMATION:
-				return "localRadarAnimation";
-			case US_RADAR_SATELLITE:
-				return "usRadarSatellite";
-			case TODAYS_WEATHER_MAP:
-				return "todaysWeatherMap";
-			case CURRENT_WIND_CONDITIONS:
-				return "currentWindConditions";
-			case TODAYS_PRECIP_ACC:
-				return "todaysPrecipitationAccumulation";
-			case DAILY_PRECIP:
-				return "dailyPrecipitation";
-			case US_SOIL_MOISTUE:
-				return "usSoilMoisture";
-			case US_CURRENT_TEMPS:
-				return "usCurrentTemperatures";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 	}
 

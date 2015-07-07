@@ -6,21 +6,17 @@ import java.util.Map;
 public class CompetitorsRequest implements OnDemandRequest {
 
 	public enum CompetitorsRequestField {
-		_52_WEEK_HIGH, _52_WEEK_HIGH_DATE, _52_WEEK_LOW, _52_WEEK_LOW_DATE;
+		_52_WEEK_HIGH("fiftyTwoWkHigh"), _52_WEEK_HIGH_DATE("fiftyTwoWkHighDate"),
+		_52_WEEK_LOW("fiftyTwoWkLow"), _52_WEEK_LOW_DATE("fiftyTwoWkLowDate");
 
-		public String getValue(CompetitorsRequestField field) {
-			switch (field) {
-			case _52_WEEK_HIGH:
-				return "fiftyTwoWkHigh";
-			case _52_WEEK_HIGH_DATE:
-				return "fiftyTwoWkHighDate";
-			case _52_WEEK_LOW:
-				return "fiftyTwoWkLow";
-			case _52_WEEK_LOW_DATE:
-				return "fiftyTwoWkLowDate";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private CompetitorsRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 
 		public static String forQuery(CompetitorsRequestField[] fields) {
@@ -35,7 +31,7 @@ public class CompetitorsRequest implements OnDemandRequest {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			return sb.toString();

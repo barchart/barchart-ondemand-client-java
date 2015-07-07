@@ -5,17 +5,16 @@ import java.util.Map;
 public interface OnDemandRequest {
 
 	public enum GenericRequestField {
-		QUARTER, ANNUAL;
+		QUARTER("Quarter"), ANNUAL("Annual");
 
-		public String getValue(GenericRequestField field) {
-			switch (field) {
-			case QUARTER:
-				return "Quarter";
-			case ANNUAL:
-				return "Annual";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private GenericRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 	}
 
