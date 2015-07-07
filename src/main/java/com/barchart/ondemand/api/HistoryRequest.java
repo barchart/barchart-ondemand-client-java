@@ -81,7 +81,7 @@ public class HistoryRequest implements OnDemandRequest {
 			case TOTAL:
 				return "total";
 			case SUM:
-				return "sun";
+				return "sum";
 			case SUM_CONTRACT:
 				return "sumcontract";
 			case SUM_TOTAL:
