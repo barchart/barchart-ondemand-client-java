@@ -24,7 +24,7 @@ public class FinancialRatios extends ResponseBase {
 			return null;
 		}
 
-		for (FinancialRatio fh : results) {
+		for (FinancialRatio fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

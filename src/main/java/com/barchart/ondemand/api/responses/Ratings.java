@@ -19,7 +19,7 @@ public class Ratings extends ResponseBase {
 			return null;
 		}
 
-		for (Rating p : results) {
+		for (Rating p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}

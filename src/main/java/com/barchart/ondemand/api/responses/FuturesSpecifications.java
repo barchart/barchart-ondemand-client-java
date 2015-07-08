@@ -26,7 +26,7 @@ public class FuturesSpecifications extends ResponseBase {
 			return null;
 		}
 
-		for (FuturesSpecification fh : results) {
+		for (FuturesSpecification fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}
@@ -46,7 +46,7 @@ public class FuturesSpecifications extends ResponseBase {
 			return res;
 		}
 
-		for (FuturesSpecification fh : results) {
+		for (FuturesSpecification fh : all()) {
 			if (fh.getExchange() != null && fh.getExchange().equalsIgnoreCase(exchange)) {
 				res.add(fh);
 			}

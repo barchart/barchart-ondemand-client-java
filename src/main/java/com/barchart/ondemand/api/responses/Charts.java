@@ -24,7 +24,7 @@ public class Charts extends ResponseBase {
 			return null;
 		}
 
-		for (Chart fh : results) {
+		for (Chart fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

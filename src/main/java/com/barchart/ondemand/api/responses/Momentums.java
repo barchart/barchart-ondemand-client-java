@@ -22,7 +22,7 @@ public class Momentums extends ResponseBase {
 			return null;
 		}
 
-		for (Momentum p : results) {
+		for (Momentum p : all()) {
 			if (p.getExchange() != null && p.getExchange().equalsIgnoreCase(exchange)) {
 				return p;
 			}

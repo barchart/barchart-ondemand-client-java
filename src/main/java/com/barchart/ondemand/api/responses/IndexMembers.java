@@ -34,7 +34,7 @@ public class IndexMembers extends ResponseBase {
 
 		final List<IndexMember> results = new ArrayList<IndexMember>();
 
-		for (IndexMember m : this.results) {
+		for (IndexMember m : all()) {
 			if (m.getIndex().equalsIgnoreCase(index)) {
 				results.add(m);
 			}

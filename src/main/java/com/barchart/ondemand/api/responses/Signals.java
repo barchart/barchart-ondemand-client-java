@@ -19,7 +19,7 @@ public class Signals extends ResponseBase {
 			return null;
 		}
 
-		for (Signal p : results) {
+		for (Signal p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}
