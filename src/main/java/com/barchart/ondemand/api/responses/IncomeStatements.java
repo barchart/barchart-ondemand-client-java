@@ -21,7 +21,7 @@ public class IncomeStatements extends ResponseBase {
 			return null;
 		}
 
-		for (IncomeStatement p : results) {
+		for (IncomeStatement p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}

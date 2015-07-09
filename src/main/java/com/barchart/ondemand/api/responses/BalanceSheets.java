@@ -24,7 +24,7 @@ public class BalanceSheets extends ResponseBase {
 			return null;
 		}
 
-		for (BalanceSheet fh : results) {
+		for (BalanceSheet fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

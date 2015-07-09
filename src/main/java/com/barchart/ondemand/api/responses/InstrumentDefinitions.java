@@ -25,7 +25,7 @@ public class InstrumentDefinitions extends ResponseBase {
 			return null;
 		}
 
-		for (InstrumentDefinition fh : results) {
+		for (InstrumentDefinition fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

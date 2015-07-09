@@ -26,7 +26,7 @@ public class SpecialOptionsClassifications extends ResponseBase {
 			return null;
 		}
 
-		for (SpecialOptionsClassification soc : results) {
+		for (SpecialOptionsClassification soc : all()) {
 			if (soc.getRoot().equals(root)) {
 				return soc;
 			}

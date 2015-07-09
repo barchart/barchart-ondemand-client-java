@@ -24,7 +24,7 @@ public class Competitors extends ResponseBase {
 			return null;
 		}
 
-		for (Competitor fh : results) {
+		for (Competitor fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

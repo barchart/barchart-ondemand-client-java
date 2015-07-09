@@ -34,7 +34,7 @@ public class CorporateActions extends ResponseBase {
 
 		final List<CorporateAction> results = new ArrayList<CorporateAction>();
 
-		for (CorporateAction a : results) {
+		for (CorporateAction a : all()) {
 			if (a.getEventType().equalsIgnoreCase(type.name())) {
 				results.add(a);
 			}

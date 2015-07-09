@@ -22,7 +22,7 @@ public class Technicals extends ResponseBase {
 			return null;
 		}
 
-		for (Technical p : results) {
+		for (Technical p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}

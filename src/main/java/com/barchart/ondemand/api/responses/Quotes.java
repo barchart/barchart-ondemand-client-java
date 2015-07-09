@@ -22,7 +22,7 @@ public class Quotes extends ResponseBase {
 			return null;
 		}
 
-		for (Quote p : results) {
+		for (Quote p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}

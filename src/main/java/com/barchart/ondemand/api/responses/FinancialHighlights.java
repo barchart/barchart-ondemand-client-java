@@ -24,7 +24,7 @@ public class FinancialHighlights extends ResponseBase {
 			return null;
 		}
 
-		for (FinancialHighlight fh : results) {
+		for (FinancialHighlight fh : all()) {
 			if (fh.getSymbol() != null && fh.getSymbol().equalsIgnoreCase(symbol)) {
 				return fh;
 			}

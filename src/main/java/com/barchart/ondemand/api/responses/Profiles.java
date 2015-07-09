@@ -22,7 +22,7 @@ public class Profiles extends ResponseBase {
 			return null;
 		}
 
-		for (Profile p : results) {
+		for (Profile p : all()) {
 			if (p.getSymbol() != null && p.getSymbol().equalsIgnoreCase(symbol)) {
 				return p;
 			}

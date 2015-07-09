@@ -22,7 +22,7 @@ public class USDAGrains extends ResponseBase {
 			return null;
 		}
 
-		for (USDAGrain p : results) {
+		for (USDAGrain p : all()) {
 			if (p.getCommodityType() != null && p.getCommodityType().equalsIgnoreCase(symbol)) {
 				return p;
 			}
