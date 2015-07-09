@@ -15,7 +15,7 @@ public interface OnDemandResponse {
 	 * 
 	 * @return
 	 */
-	public OnDemandRequest getRequest();
+	public OnDemandRequest<?> getRequest();
 
 	/**
 	 * Reruns the original query. Makes a new call and updates all data in the

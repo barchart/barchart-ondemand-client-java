@@ -3,7 +3,9 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SpecialOptionsClassificationRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.SpecialOptionsClassifications;
+
+public class SpecialOptionsClassificationRequest implements OnDemandRequest<SpecialOptionsClassifications> {
 
 	private final String symbols;
 	private final String fields;
@@ -40,6 +42,11 @@ public class SpecialOptionsClassificationRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<SpecialOptionsClassifications> responseType() {
+		return SpecialOptionsClassifications.class;
+	}
+
 	public static class Builder {
 
 		private String root;
@@ -49,7 +56,7 @@ public class SpecialOptionsClassificationRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public SpecialOptionsClassificationRequest build() {
 			return new SpecialOptionsClassificationRequest(this);
 		}
 	}

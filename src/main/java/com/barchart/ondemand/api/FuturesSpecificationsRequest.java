@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class FuturesSpecificationsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.FuturesSpecifications;
+
+public class FuturesSpecificationsRequest implements OnDemandRequest<FuturesSpecifications> {
 
 	private final String symbols;
 	private final String fields;
@@ -53,6 +55,11 @@ public class FuturesSpecificationsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<FuturesSpecifications> responseType() {
+		return FuturesSpecifications.class;
+	}
+
 	public static class Builder {
 		private String[] symbols;
 		private String[] exchanges;
@@ -73,7 +80,7 @@ public class FuturesSpecificationsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public FuturesSpecificationsRequest build() {
 			return new FuturesSpecificationsRequest(this);
 		}
 	}

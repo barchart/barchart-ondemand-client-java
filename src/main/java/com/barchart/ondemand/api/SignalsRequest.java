@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class SignalsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Signals;
+
+public class SignalsRequest implements OnDemandRequest<Signals> {
 
 	private final String symbols;
 	private final String fields;
@@ -44,6 +46,11 @@ public class SignalsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Signals> responseType() {
+		return Signals.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -59,7 +66,7 @@ public class SignalsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public SignalsRequest build() {
 			return new SignalsRequest(this);
 		}
 	}

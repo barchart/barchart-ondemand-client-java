@@ -86,8 +86,6 @@ public class BarchartOnDemandClient {
 
 	private final OkHttpClient http = new OkHttpClient();
 
-	public static final Map<Class<?>, Class<?>> responseMap = new HashMap<Class<?>, Class<?>>();
-
 	//
 
 	private BarchartOnDemandClient(final Builder b) {
@@ -95,35 +93,11 @@ public class BarchartOnDemandClient {
 		this.baseUrl = b.baseUrl;
 		this.cacheTime = b.cacheTime;
 		this.debug = b.debug;
-
-		responseMap.put(QuoteRequest.class, Quotes.class);
-		responseMap.put(TechnicalsRequest.class, Technicals.class);
-		responseMap.put(SignalsRequest.class, Signals.class);
-		responseMap.put(BalanceSheetsRequest.class, BalanceSheets.class);
-		responseMap.put(CompetitorsRequest.class, Competitors.class);
-		responseMap.put(CorporateActionsRequest.class, CorporateActions.class);
-		responseMap.put(FinancialHighlightRequest.class, FinancialHighlights.class);
-		responseMap.put(FinancialRatioRequest.class, FinancialRatios.class);
-		responseMap.put(IncomeStatementRequest.class, IncomeStatements.class);
-		responseMap.put(IndexMembersRequest.class, IndexMembers.class);
-		responseMap.put(ProfileRequest.class, Profiles.class);
-		responseMap.put(RatingsRequest.class, Ratings.class);
-		responseMap.put(FuturesOptionsRequest.class, FuturesOptions.class);
-		responseMap.put(SDFuturesOptionsRequest.class, SDFuturesOptions.class);
-		responseMap.put(InstrumentDefinitionRequest.class, InstrumentDefinitions.class);
-		responseMap.put(FuturesSpecificationsRequest.class, FuturesSpecifications.class);
-		responseMap.put(WeatherRequest.class, Weather.class);
-		responseMap.put(LeadersRequest.class, Leaders.class);
-		responseMap.put(MomentumRequest.class, Momentums.class);
-		responseMap.put(ChartRequest.class, Charts.class);
-		responseMap.put(USDAGrainsRequest.class, USDAGrains.class);
-		responseMap.put(HistoryRequest.class, History.class);
-		responseMap.put(SpecialOptionsClassificationRequest.class, SpecialOptionsClassifications.class);
 	}
 
 	//
 
-	public <T extends OnDemandResponse> OnDemandResponse fetch(final OnDemandRequest request) throws Exception {
+	public <T extends ResponseBase> T fetch(final OnDemandRequest<T> request) throws Exception {
 
 		if (request == null) {
 			throw new RuntimeException("request cannot be null.");
@@ -144,7 +118,7 @@ public class BarchartOnDemandClient {
 			System.out.println("query URL = " + sb.toString());
 			System.out.println("response = " + response);
 		}
-		final ResponseBase base = (ResponseBase) JsonUtil.fromJson(responseMap.get(request.getClass()), response);
+		final T base = JsonUtil.fromJson(request.responseType(), response);
 
 		base.configure(request, this);
 
@@ -171,7 +145,7 @@ public class BarchartOnDemandClient {
 
 	}
 
-	private String fetchApiString(final OnDemandRequest request, final OkHttpClient client) throws IOException {
+	private String fetchApiString(final OnDemandRequest<?> request, final OkHttpClient client) throws IOException {
 
 		final StringBuilder sb = new StringBuilder();
 

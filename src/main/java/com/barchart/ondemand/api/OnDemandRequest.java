@@ -2,7 +2,9 @@ package com.barchart.ondemand.api;
 
 import java.util.Map;
 
-public interface OnDemandRequest {
+import com.barchart.ondemand.api.responses.ResponseBase;
+
+public interface OnDemandRequest<R extends ResponseBase> {
 
 	public enum GenericRequestField {
 		QUARTER, ANNUAL;
@@ -27,4 +29,5 @@ public interface OnDemandRequest {
 
 	Map<String, Object> parameters();
 
+	Class<R> responseType();
 }

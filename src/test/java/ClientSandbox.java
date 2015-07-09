@@ -25,7 +25,7 @@ public class ClientSandbox {
 		builder.symbols(new String[] { "AAPL", "AMZN" });
 		builder.fields(new TechnicalsRequestField[] { TechnicalsRequestField.HIST_VOL_20_DAY });
 
-		final Technicals results = (Technicals) onDemand.fetch(builder.build());
+		final Technicals results = onDemand.fetch(builder.build());
 
 		for (Technical q : results.all()) {
 			System.out.println("Tech : " + q.getSymbol() + ", 20 day historic vol = "
@@ -39,7 +39,7 @@ public class ClientSandbox {
 		qBuilder.fields(QuoteRequestField.values());
 		qBuilder.symbols(new String[] { "APPL", "NEM", "TBY0", "GH*1" });
 
-		final Quotes qResults = (Quotes) onDemand.fetch(qBuilder.build());
+		final Quotes qResults = onDemand.fetch(qBuilder.build());
 
 		for (Quote q : qResults.all()) {
 			System.out.println("Quote : " + q.getSymbol() + " last = " + q.getLastPrice());

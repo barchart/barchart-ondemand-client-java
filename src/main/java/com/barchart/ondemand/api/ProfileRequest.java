@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class ProfileRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Profiles;
+
+public class ProfileRequest implements OnDemandRequest<Profiles> {
 
 	public enum ProfileRequestField {
 		QTR_ONE_EARNINGS, QTR_TWO_EARNINGS, QTR_THREE_EARNINGS, QTR_FOUR_EARNINGS;
@@ -80,6 +82,11 @@ public class ProfileRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Profiles> responseType() {
+		return Profiles.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -95,7 +102,7 @@ public class ProfileRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public ProfileRequest build() {
 			return new ProfileRequest(this);
 		}
 	}

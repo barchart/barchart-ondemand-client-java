@@ -3,7 +3,9 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Weather;
+
+public class WeatherRequest implements OnDemandRequest<Weather> {
 
 	public enum WeatherRequestType {
 		CURRENT_CONTIDIONS, FORECAST, MAP;
@@ -100,6 +102,11 @@ public class WeatherRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Weather> responseType() {
+		return Weather.class;
+	}
+
 	public static class Builder {
 
 		private String zipCode;
@@ -133,7 +140,7 @@ public class WeatherRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public WeatherRequest build() {
 			return new WeatherRequest(this);
 		}
 	}

@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class BalanceSheetsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.BalanceSheets;
+
+public class BalanceSheetsRequest implements OnDemandRequest<BalanceSheets> {
 
 	private final String symbols;
 	private final String fields;
@@ -51,6 +53,11 @@ public class BalanceSheetsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<BalanceSheets> responseType() {
+		return BalanceSheets.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -72,7 +79,7 @@ public class BalanceSheetsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public BalanceSheetsRequest build() {
 			return new BalanceSheetsRequest(this);
 		}
 	}
