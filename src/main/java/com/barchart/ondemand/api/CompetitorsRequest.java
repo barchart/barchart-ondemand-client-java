@@ -3,7 +3,9 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CompetitorsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Competitors;
+
+public class CompetitorsRequest implements OnDemandRequest<Competitors> {
 
 	public enum CompetitorsRequestField {
 		_52_WEEK_HIGH, _52_WEEK_HIGH_DATE, _52_WEEK_LOW, _52_WEEK_LOW_DATE;
@@ -84,6 +86,11 @@ public class CompetitorsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Competitors> responseType() {
+		return Competitors.class;
+	}
+
 	public static class Builder {
 
 		private String symbol;
@@ -105,7 +112,7 @@ public class CompetitorsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public CompetitorsRequest build() {
 			return new CompetitorsRequest(this);
 		}
 	}

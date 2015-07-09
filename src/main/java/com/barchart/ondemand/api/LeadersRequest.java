@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class LeadersRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Leaders;
+
+public class LeadersRequest implements OnDemandRequest<Leaders> {
 
 	public enum LeadersAssetType {
 		STOCK, ETF, FUTURE, FUND, FOREX;
@@ -169,6 +171,11 @@ public class LeadersRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Leaders> responseType() {
+		return Leaders.class;
+	}
+
 	public static class Builder {
 
 		private String[] exchanges;
@@ -191,7 +198,7 @@ public class LeadersRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public LeadersRequest build() {
 
 			if (type == null) {
 				throw new IllegalArgumentException("you must set the type field, LeadersRequestType");

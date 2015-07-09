@@ -7,7 +7,9 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-public class HistoryRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.History;
+
+public class HistoryRequest implements OnDemandRequest<History> {
 
 	public static final DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyyMMddhhmmss");
 
@@ -159,6 +161,11 @@ public class HistoryRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<History> responseType() {
+		return History.class;
+	}
+
 	public static class Builder {
 
 		private String symbol;
@@ -228,7 +235,7 @@ public class HistoryRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public HistoryRequest build() {
 
 			if (symbol == null) {
 				throw new IllegalArgumentException("you must set the symbol field");

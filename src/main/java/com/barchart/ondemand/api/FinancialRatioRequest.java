@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class FinancialRatioRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.FinancialRatios;
+
+public class FinancialRatioRequest implements OnDemandRequest<FinancialRatios> {
 
 	public enum FinancialRatioRequestField {
 		DEBT_EQUITY, INTEREST_COVERAGE, BOOK_VALUE, DIVIDEND_PAYOUT;
@@ -76,6 +78,11 @@ public class FinancialRatioRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<FinancialRatios> responseType() {
+		return FinancialRatios.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -91,7 +98,7 @@ public class FinancialRatioRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public FinancialRatioRequest build() {
 			return new FinancialRatioRequest(this);
 		}
 	}
