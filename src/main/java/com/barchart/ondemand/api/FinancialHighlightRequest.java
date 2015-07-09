@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class FinancialHighlightRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.FinancialHighlights;
+
+public class FinancialHighlightRequest implements OnDemandRequest<FinancialHighlights> {
 
 	public enum FinancialHighlightRequestField {
 		LAST_QTR_EPS, ANNUAL_EPS, TTM_EPS;
@@ -78,6 +80,11 @@ public class FinancialHighlightRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<FinancialHighlights> responseType() {
+		return FinancialHighlights.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -93,7 +100,7 @@ public class FinancialHighlightRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public FinancialHighlightRequest build() {
 			return new FinancialHighlightRequest(this);
 		}
 	}

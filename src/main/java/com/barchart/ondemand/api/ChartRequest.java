@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class ChartRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Charts;
+
+public class ChartRequest implements OnDemandRequest<Charts> {
 
 	public enum ChartRequestType {
 		BAR, LINE, CANDLE, AREA;
@@ -121,6 +123,11 @@ public class ChartRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Charts> responseType() {
+		return Charts.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -154,7 +161,7 @@ public class ChartRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public ChartRequest build() {
 			return new ChartRequest(this);
 		}
 	}

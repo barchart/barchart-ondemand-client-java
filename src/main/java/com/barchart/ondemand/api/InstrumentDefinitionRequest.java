@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.barchart.ondemand.api.responses.InstrumentDefinitions;
+
 /**
  * 
  * @author m-ehrenberg
@@ -13,7 +15,7 @@ import org.apache.commons.lang.StringUtils;
  * 
  */
 
-public class InstrumentDefinitionRequest implements OnDemandRequest {
+public class InstrumentDefinitionRequest implements OnDemandRequest<InstrumentDefinitions> {
 
 	private final String symbols;
 	private final String fields;
@@ -67,6 +69,11 @@ public class InstrumentDefinitionRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<InstrumentDefinitions> responseType() {
+		return InstrumentDefinitions.class;
+	}
+
 	public static class Builder {
 		private String[] symbols;
 		private String[] exchanges;
@@ -99,7 +106,7 @@ public class InstrumentDefinitionRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public InstrumentDefinitionRequest build() {
 			return new InstrumentDefinitionRequest(this);
 		}
 	}

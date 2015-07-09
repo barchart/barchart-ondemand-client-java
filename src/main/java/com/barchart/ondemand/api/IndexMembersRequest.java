@@ -3,7 +3,9 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndexMembersRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.IndexMembers;
+
+public class IndexMembersRequest implements OnDemandRequest<IndexMembers> {
 
 	private final String symbol;
 	private final String fields;
@@ -42,6 +44,11 @@ public class IndexMembersRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<IndexMembers> responseType() {
+		return IndexMembers.class;
+	}
+
 	public static class Builder {
 		private String symbol;
 
@@ -50,7 +57,7 @@ public class IndexMembersRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public IndexMembersRequest build() {
 			return new IndexMembersRequest(this);
 		}
 	}

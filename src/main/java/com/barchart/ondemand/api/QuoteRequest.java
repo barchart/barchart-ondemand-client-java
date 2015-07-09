@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class QuoteRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Quotes;
+
+public class QuoteRequest implements OnDemandRequest<Quotes> {
 
 	public enum QuoteRequestMode {
 		REAL_TIME, DELAYED, END_OF_DAY;
@@ -105,6 +107,11 @@ public class QuoteRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Quotes> responseType() {
+		return Quotes.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -126,7 +133,7 @@ public class QuoteRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public QuoteRequest build() {
 			return new QuoteRequest(this);
 		}
 	}

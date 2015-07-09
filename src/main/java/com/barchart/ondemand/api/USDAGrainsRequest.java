@@ -3,7 +3,9 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class USDAGrainsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.USDAGrains;
+
+public class USDAGrainsRequest implements OnDemandRequest<USDAGrains> {
 
 	private final String fields;
 
@@ -37,9 +39,14 @@ public class USDAGrainsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<USDAGrains> responseType() {
+		return USDAGrains.class;
+	}
+
 	public static class Builder {
 
-		public OnDemandRequest build() {
+		public USDAGrainsRequest build() {
 			return new USDAGrainsRequest(this);
 		}
 	}

@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class MomentumRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Momentums;
+
+public class MomentumRequest implements OnDemandRequest<Momentums> {
 
 	private final String exchanges;
 	private final String fields;
@@ -44,6 +46,11 @@ public class MomentumRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Momentums> responseType() {
+		return Momentums.class;
+	}
+
 	public static class Builder {
 
 		private String[] exchanges;
@@ -53,7 +60,7 @@ public class MomentumRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public MomentumRequest build() {
 			return new MomentumRequest(this);
 		}
 	}

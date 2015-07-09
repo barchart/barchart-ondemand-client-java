@@ -169,7 +169,7 @@ public class MainTest {
 		final SpecialOptionsClassificationRequest.Builder builder = new SpecialOptionsClassificationRequest.Builder()
 				.root("ZC");
 
-		final OnDemandRequest p = builder.build();
+		final SpecialOptionsClassificationRequest p = builder.build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -194,7 +194,7 @@ public class MainTest {
 		final HistoryRequest.Builder builder = new HistoryRequest.Builder().symbol("AAPL")
 				.start(new DateTime(2012, 2, 3, 11, 11)).end(new DateTime(2012, 3, 3, 11, 11));
 
-		final OnDemandRequest p = builder.build();
+		final HistoryRequest p = builder.build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -211,7 +211,7 @@ public class MainTest {
 
 		builder.eventTypes(new ProfileRequestField[] { ProfileRequestField.QTR_FOUR_EARNINGS });
 
-		final OnDemandRequest p = builder.build();
+		final ProfileRequest p = builder.build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -224,7 +224,7 @@ public class MainTest {
 
 	private void testFinancialHighlights() throws IOException {
 
-		final OnDemandRequest p = new FinancialHighlightRequest.Builder().symbols(new String[] { "AAPL", "GOOG" })
+		final FinancialHighlightRequest p = new FinancialHighlightRequest.Builder().symbols(new String[] { "AAPL", "GOOG" })
 				.build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -238,7 +238,7 @@ public class MainTest {
 
 	private void testFinancialRatios() throws IOException {
 
-		final OnDemandRequest p = new FinancialRatioRequest.Builder().symbols(new String[] { "AAPL", "GOOG" }).build();
+		final FinancialRatioRequest p = new FinancialRatioRequest.Builder().symbols(new String[] { "AAPL", "GOOG" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -257,7 +257,7 @@ public class MainTest {
 		pBuilder.eventTypes(GenericRequestField.ANNUAL);
 		pBuilder.count(2);
 
-		final OnDemandRequest p = pBuilder.build();
+		final IncomeStatementRequest p = pBuilder.build();
 
 		String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -270,7 +270,7 @@ public class MainTest {
 
 	private void testBalanceSheets() throws IOException {
 
-		final OnDemandRequest p = new BalanceSheetsRequest.Builder().symbols(new String[] { "AAPL", "GOOG" }).build();
+		final BalanceSheetsRequest p = new BalanceSheetsRequest.Builder().symbols(new String[] { "AAPL", "GOOG" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -283,7 +283,7 @@ public class MainTest {
 
 	private void testCompetitors() throws IOException {
 
-		final OnDemandRequest p = new CompetitorsRequest.Builder().symbol("GOOG")
+		final CompetitorsRequest p = new CompetitorsRequest.Builder().symbol("GOOG")
 				.eventTypes(new CompetitorsRequestField[] { CompetitorsRequestField._52_WEEK_HIGH }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -297,7 +297,7 @@ public class MainTest {
 
 	private void testRatings() throws IOException {
 
-		final OnDemandRequest p = new RatingsRequest.Builder()
+		final RatingsRequest p = new RatingsRequest.Builder()
 				.symbols(new String[] { "GOOG, AAPL" })
 				.eventTypes(
 						new RatingsRequestField[] { RatingsRequestField.STRONG_BUY, RatingsRequestField.STRONG_SELL })
@@ -315,7 +315,7 @@ public class MainTest {
 
 	private void testIndexMembers() throws IOException {
 
-		final OnDemandRequest p = new IndexMembersRequest.Builder().symbol("$ONE").build();
+		final IndexMembersRequest p = new IndexMembersRequest.Builder().symbol("$ONE").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -328,7 +328,7 @@ public class MainTest {
 
 	private void testCorpActions() throws IOException {
 
-		final OnDemandRequest p = new CorporateActionsRequest.Builder().symbols(new String[] { "AAPL", "NEM" })
+		final CorporateActionsRequest p = new CorporateActionsRequest.Builder().symbols(new String[] { "AAPL", "NEM" })
 				.maxRecords(10).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -342,7 +342,7 @@ public class MainTest {
 
 	private void testQuote() throws IOException {
 
-		final OnDemandRequest p = new QuoteRequest.Builder().symbols(new String[] { "AAPL", "NEM" })
+		final QuoteRequest p = new QuoteRequest.Builder().symbols(new String[] { "AAPL", "NEM" })
 				.mode(QuoteRequestMode.REAL_TIME).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -354,7 +354,7 @@ public class MainTest {
 
 	private void testFuturesOptions() throws IOException {
 
-		final OnDemandRequest p = new FuturesOptionsRequest.Builder().contract("ESU14").build();
+		final FuturesOptionsRequest p = new FuturesOptionsRequest.Builder().contract("ESU14").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -367,7 +367,7 @@ public class MainTest {
 
 	private void testSDFuturesOptions() throws IOException {
 
-		final OnDemandRequest p = new SDFuturesOptionsRequest.Builder().root("ZC").build();
+		final SDFuturesOptionsRequest p = new SDFuturesOptionsRequest.Builder().root("ZC").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -386,7 +386,7 @@ public class MainTest {
 
 	private void testTechnicals() throws IOException {
 
-		final OnDemandRequest p = new TechnicalsRequest.Builder().symbols(new String[] { "AAPL" })
+		final TechnicalsRequest p = new TechnicalsRequest.Builder().symbols(new String[] { "AAPL" })
 				.fields(TechnicalsRequestField.all()).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -400,7 +400,7 @@ public class MainTest {
 
 	private void testSignals() throws IOException {
 
-		final OnDemandRequest p = new SignalsRequest.Builder().symbols(new String[] { "AAPL" })
+		final SignalsRequest p = new SignalsRequest.Builder().symbols(new String[] { "AAPL" })
 				.fields(SignalsRequestField.all()).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -414,7 +414,7 @@ public class MainTest {
 
 	private void testMomentums() throws IOException {
 
-		final OnDemandRequest p = new MomentumRequest.Builder().exchanges(new String[] { "NYSE", "NASDAQ" }).build();
+		final MomentumRequest p = new MomentumRequest.Builder().exchanges(new String[] { "NYSE", "NASDAQ" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -427,7 +427,7 @@ public class MainTest {
 
 	private void testInstrumentDefinitons() throws IOException {
 
-		final OnDemandRequest p = new InstrumentDefinitionRequest.Builder().exchanges(new String[] { "CME" })
+		final InstrumentDefinitionRequest p = new InstrumentDefinitionRequest.Builder().exchanges(new String[] { "CME" })
 				.maxRecords(100).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -442,7 +442,7 @@ public class MainTest {
 
 	private void testFuturesSepecifications() throws IOException {
 
-		final OnDemandRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "LME" }).build();
+		final FuturesSpecificationsRequest p = new FuturesSpecificationsRequest.Builder().exchanges(new String[] { "LME" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -460,7 +460,7 @@ public class MainTest {
 
 	private void testWeather() throws IOException {
 
-		final OnDemandRequest p = new WeatherRequest.Builder().zipCode("60614").build();
+		final WeatherRequest p = new WeatherRequest.Builder().zipCode("60614").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -473,7 +473,7 @@ public class MainTest {
 
 	private void testLeaders() throws IOException {
 
-		final OnDemandRequest p = new LeadersRequest.Builder().exchanges(new String[] { "NYSE" })
+		final LeadersRequest p = new LeadersRequest.Builder().exchanges(new String[] { "NYSE" })
 				.type(LeadersRequestType.ACTIVE_YTD).assetType(LeadersAssetType.STOCK).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
@@ -487,7 +487,7 @@ public class MainTest {
 
 	private void testCharts() throws IOException {
 
-		final OnDemandRequest p = new ChartRequest.Builder().symbols(new String[] { "GOOG", "NEM" }).build();
+		final ChartRequest p = new ChartRequest.Builder().symbols(new String[] { "GOOG", "NEM" }).build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
@@ -500,7 +500,7 @@ public class MainTest {
 
 	private void testUSDAGrains() throws IOException {
 
-		final OnDemandRequest p = new USDAGrainsRequest.Builder().build();
+		final USDAGrainsRequest p = new USDAGrainsRequest.Builder().build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
