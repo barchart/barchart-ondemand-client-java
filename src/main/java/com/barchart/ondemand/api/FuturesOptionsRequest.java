@@ -10,23 +10,24 @@ import com.barchart.ondemand.api.responses.FuturesOptions;
 public class FuturesOptionsRequest implements OnDemandRequest<FuturesOptions> {
 
 	public enum FuturesOptionsRequestType {
-		CALLS, PUTS, ALL;
+		CALLS("Call"), PUTS("Puts"), ALL("");
+
+		private final String value;
+
+		private FuturesOptionsRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(FuturesOptionsRequestType field) {
 			if (field == null) {
 				return "";
 			}
 
-			switch (field) {
-			case CALLS:
-				return "Call";
-			case PUTS:
-				return "Puts";
-			case ALL:
-				return "";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 	}
 

@@ -10,42 +10,39 @@ import com.barchart.ondemand.api.responses.Quotes;
 public class QuoteRequest implements OnDemandRequest<Quotes> {
 
 	public enum QuoteRequestMode {
-		REAL_TIME, DELAYED, END_OF_DAY;
+		REAL_TIME("R"), DELAYED("I"), END_OF_DAY("D");
+
+		private final String value;
+
+		private QuoteRequestMode(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(QuoteRequestMode field) {
 			if (field == null) {
 				return "I";
 			}
 
-			switch (field) {
-			case REAL_TIME:
-				return "R";
-			case DELAYED:
-				return "I";
-			case END_OF_DAY:
-				return "D";
-			default:
-				return "I";
-			}
+			return field.getValue();
 		}
 	}
 
 	public enum QuoteRequestField {
-		_52_WEEK_HIGH, _52_WEEK_HIGH_DATE, _52_WEEK_LOW, _52_WEEK_LOW_DATE;
+		_52_WEEK_HIGH("fiftyTwoWkHigh"), _52_WEEK_HIGH_DATE("fiftyTwoWkHighDate"),
+		_52_WEEK_LOW("fiftyTwoWkLow"), _52_WEEK_LOW_DATE("fiftyTwoWkLowDate");
 
-		public String getValue(QuoteRequestField field) {
-			switch (field) {
-			case _52_WEEK_HIGH:
-				return "fiftyTwoWkHigh";
-			case _52_WEEK_HIGH_DATE:
-				return "fiftyTwoWkHighDate";
-			case _52_WEEK_LOW:
-				return "fiftyTwoWkLow";
-			case _52_WEEK_LOW_DATE:
-				return "fiftyTwoWkLowDate";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private QuoteRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 
 		public static String forQuery(QuoteRequestField[] fields) {
@@ -60,7 +57,7 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			return sb.toString();

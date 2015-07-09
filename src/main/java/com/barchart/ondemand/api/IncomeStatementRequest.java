@@ -19,7 +19,7 @@ public class IncomeStatementRequest implements OnDemandRequest<IncomeStatements>
 		this.symbols = StringUtils.join(b.symbols, ",");
 
 		if (b.frequency != null) {
-			params.put("frequency", b.frequency.getValue(b.frequency));
+			params.put("frequency", b.frequency.getValue());
 		} else {
 			params.put("frequency", GenericRequestField.QUARTER);
 		}

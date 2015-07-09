@@ -14,83 +14,50 @@ public class HistoryRequest implements OnDemandRequest<History> {
 	public static final DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyyMMddhhmmss");
 
 	public enum HistoryRequestType {
-		TICKS, MINUTES, MINUTES_NEARBY, MINUTES_FORMT, //
-		DAILY, DAILY_NEAREST, DAILY_CONTINUE, //
-		WEEKLY, WEEKLY_NEAREST, WEEKLY_CONTINUE, //
-		MONTHLY, MONTHLY_NEAREST, MONTHLY_CONTINUE, //
-		QUARTERLY, QUARTERLY_NEAREST, QUARTERLY_CONTINUE, //
-		YEARLY, YEARLY_NEAREST, YEARLY_CONTINUE;
+		TICKS("ticks"), MINUTES("minutes"), MINUTES_NEARBY("nearbyMinutes"), MINUTES_FORMT("formTMinutes"), //
+		DAILY("daily"), DAILY_NEAREST("dailyNearest"), DAILY_CONTINUE("dailyContinue"), //
+		WEEKLY("weekly"), WEEKLY_NEAREST("weeklyNearest"), WEEKLY_CONTINUE("weeklyContinue"), //
+		MONTHLY("monthly"), MONTHLY_NEAREST("monthlyNearest"), MONTHLY_CONTINUE("monthlyContinue"), //
+		QUARTERLY("quarterly"), QUARTERLY_NEAREST("quarterlyNearest"), QUARTERLY_CONTINUE("quarterlyContinue"), //
+		YEARLY("yearly"), YEARLY_NEAREST("yearlyNearest"), YEARLY_CONTINUE("yearlyContinue");
 
+		private final String value;
+
+		private HistoryRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 		public static String getValue(HistoryRequestType type) {
 			if (type == null) {
 				return "minutes";
 			}
 
-			switch (type) {
-			case TICKS:
-				return "ticks";
-			case MINUTES:
-				return "minutes";
-			case MINUTES_NEARBY:
-				return "nearbyMinutes";
-			case MINUTES_FORMT:
-				return "formTMinutes";
-			case DAILY: //
-				return "daily";
-			case DAILY_NEAREST:
-				return "dailyNearest";
-			case DAILY_CONTINUE:
-				return "dailyContinue";
-			case WEEKLY://
-				return "weekly";
-			case WEEKLY_NEAREST:
-				return "weeklyNearest";
-			case WEEKLY_CONTINUE:
-				return "weeklyContinue";
-			case MONTHLY: //
-				return "monthly";
-			case MONTHLY_NEAREST:
-				return "monthlyNearest";
-			case MONTHLY_CONTINUE:
-				return "monthlyContinue";
-			case QUARTERLY: //
-				return "quarterly";
-			case QUARTERLY_NEAREST:
-				return "quarterlyNearest";
-			case QUARTERLY_CONTINUE:
-				return "quarterlyContinue";
-			case YEARLY: //
-				return "yearly";
-			case YEARLY_NEAREST:
-				return "yearlyNearest";
-			case YEARLY_CONTINUE:
-				return "yearlyContinue";
-			default:
-				return "";
-			}
+			return type.getValue();
 		}
 	}
 
 	public enum HistoryRequestVolume {
-		TOTAL, SUM, SUM_CONTRACT, SUM_TOTAL;
+		TOTAL("total"), SUM("sum"), SUM_CONTRACT("sumcontract"), SUM_TOTAL("sumtotal");
+
+		private final String value;
+
+		private HistoryRequestVolume(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(HistoryRequestVolume field) {
 			if (field == null) {
 				return "";
 			}
 
-			switch (field) {
-			case TOTAL:
-				return "total";
-			case SUM:
-				return "sum";
-			case SUM_CONTRACT:
-				return "sumcontract";
-			case SUM_TOTAL:
-				return "sumtotal";
-			default:
-				return "total";
-			}
+			return field.getValue();
 		}
 	}
 

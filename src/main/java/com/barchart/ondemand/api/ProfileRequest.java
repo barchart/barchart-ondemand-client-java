@@ -10,21 +10,17 @@ import com.barchart.ondemand.api.responses.Profiles;
 public class ProfileRequest implements OnDemandRequest<Profiles> {
 
 	public enum ProfileRequestField {
-		QTR_ONE_EARNINGS, QTR_TWO_EARNINGS, QTR_THREE_EARNINGS, QTR_FOUR_EARNINGS;
+		QTR_ONE_EARNINGS("qtrOneEarnings"), QTR_TWO_EARNINGS("qtrTwoEarnings"),
+		QTR_THREE_EARNINGS("qtrThreeEarnings"), QTR_FOUR_EARNINGS("qtrFourEarnings");
 
-		public String getValue(ProfileRequestField field) {
-			switch (field) {
-			case QTR_ONE_EARNINGS:
-				return "qtrOneEarnings";
-			case QTR_TWO_EARNINGS:
-				return "qtrTwoEarnings";
-			case QTR_THREE_EARNINGS:
-				return "qtrThreeEarnings";
-			case QTR_FOUR_EARNINGS:
-				return "qtrFourEarnings";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private ProfileRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 
 		public static String forQuery(ProfileRequestField[] fields) {
@@ -38,7 +34,7 @@ public class ProfileRequest implements OnDemandRequest<Profiles> {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			return sb.toString();

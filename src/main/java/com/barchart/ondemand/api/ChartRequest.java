@@ -10,32 +10,44 @@ import com.barchart.ondemand.api.responses.Charts;
 public class ChartRequest implements OnDemandRequest<Charts> {
 
 	public enum ChartRequestType {
-		BAR, LINE, CANDLE, AREA;
+		BAR("BAR"), LINE("LINE"), CANDLE("CANDLE"), AREA("AREA");
+
+		private final String value;
+
+		private ChartRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(ChartRequestType field) {
 			if (field == null) {
 				return "BAR";
 			}
 
-			switch (field) {
-			case BAR:
-				return "BAR";
-			case LINE:
-				return "LINE";
-			case CANDLE:
-				return "CANDLE";
-			case AREA:
-				return "AREA";
-			default:
-				return "BAR";
-			}
+			return field.getValue();
 		}
 	}
 
 	public enum ChartRequestPeriod {
-		DAY_1, DAY_5, DAY_3, DAY_10, //
-		MONTH_1, MONTH_3, MONTH_6, //
-		YEAR_1, YEAR_2, YEAR_3, YEAR_5, YEAR_10, YEAR_15, YEAR_20, YEAR_25;
+		// Day
+		DAY_1("1d"), DAY_5("5d"), DAY_3("3d"), DAY_10("10d"),
+		// Month
+		MONTH_1("1m"), MONTH_3("3m"), MONTH_6("6m"),
+		// Year
+		YEAR_1("1y"), YEAR_2("2y"), YEAR_3("3y"), YEAR_5("5y"), YEAR_10("10y"), YEAR_15("15y"), YEAR_20("20y"), YEAR_25("25y");
+
+		private final String value;
+
+		private ChartRequestPeriod(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(ChartRequestPeriod field) {
 
@@ -43,40 +55,7 @@ public class ChartRequest implements OnDemandRequest<Charts> {
 				return "1d";
 			}
 
-			switch (field) {
-			case DAY_1:
-				return "1d";
-			case DAY_3:
-				return "3d";
-			case DAY_5:
-				return "5d";
-			case DAY_10:
-				return "10d";
-			case MONTH_1: // month
-				return "1m";
-			case MONTH_3:
-				return "3m";
-			case MONTH_6:
-				return "6m";
-			case YEAR_1: // year
-				return "1y";
-			case YEAR_2:
-				return "2y";
-			case YEAR_3:
-				return "3y";
-			case YEAR_5:
-				return "5y";
-			case YEAR_10:
-				return "10y";
-			case YEAR_15:
-				return "15y";
-			case YEAR_20:
-				return "20y";
-			case YEAR_25:
-				return "25y";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 
 	}
