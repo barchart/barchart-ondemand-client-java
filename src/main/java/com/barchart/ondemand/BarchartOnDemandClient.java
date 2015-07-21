@@ -11,6 +11,7 @@ import com.barchart.ondemand.api.BalanceSheetsRequest;
 import com.barchart.ondemand.api.ChartRequest;
 import com.barchart.ondemand.api.CompetitorsRequest;
 import com.barchart.ondemand.api.CorporateActionsRequest;
+import com.barchart.ondemand.api.EquitiesOptionsRequest;
 import com.barchart.ondemand.api.FinancialHighlightRequest;
 import com.barchart.ondemand.api.FinancialRatioRequest;
 import com.barchart.ondemand.api.FuturesOptionsRequest;
@@ -35,6 +36,7 @@ import com.barchart.ondemand.api.responses.BalanceSheets;
 import com.barchart.ondemand.api.responses.Charts;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
+import com.barchart.ondemand.api.responses.EquitiesOptions;
 import com.barchart.ondemand.api.responses.FinancialHighlights;
 import com.barchart.ondemand.api.responses.FinancialRatios;
 import com.barchart.ondemand.api.responses.FuturesOptions;
@@ -119,7 +121,7 @@ public class BarchartOnDemandClient {
 		responseMap.put(USDAGrainsRequest.class, USDAGrains.class);
 		responseMap.put(HistoryRequest.class, History.class);
 		responseMap.put(SpecialOptionsClassificationRequest.class, SpecialOptionsClassifications.class);
-		responseMap.put(EquitiesOptionsRequest.class, EquitiesOptionsRequest.class);
+		responseMap.put(EquitiesOptionsRequest.class, EquitiesOptions.class);
 	}
 
 	//
