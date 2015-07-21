@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "underlying_symbols", "symbol", "exchange", "type", "strike", "expirationDate",
+@JsonPropertyOrder({ "underlying_symbol", "symbol", "exchange", "type", "strike", "expirationDate",
 		"bid", "bidSize", "ask", "askSize" })
 public class EquitiesOption {
 	
-	@JsonProperty("underlying_symbols")
-	private String underlying_symbols;
+	@JsonProperty("underlying_symbol")
+	private String underlying_symbol;
 	@JsonProperty("symbol")
 	private String symbol;
 	@JsonProperty("exchange")
@@ -30,14 +30,14 @@ public class EquitiesOption {
 	@JsonProperty("askSize")
 	private int askSize;
 	
-	@JsonProperty("underlying_symbols")
-	public String getUnderlying_symbols() {
-		return underlying_symbols;
+	@JsonProperty("underlying_symbol")
+	public String getUnderlying_symbol() {
+		return underlying_symbol;
 	}
 	
-	@JsonProperty("underlying_symbols")
-	public void setUnderlying_symbols(String underlying_symbols) {
-		this.underlying_symbols = underlying_symbols;
+	@JsonProperty("underlying_symbol")
+	public void setUnderlying_symbol(String underlying_symbol) {
+		this.underlying_symbol = underlying_symbol;
 	}
 	
 	@JsonProperty("symbol")
