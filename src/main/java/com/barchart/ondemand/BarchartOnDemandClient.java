@@ -119,6 +119,7 @@ public class BarchartOnDemandClient {
 		responseMap.put(USDAGrainsRequest.class, USDAGrains.class);
 		responseMap.put(HistoryRequest.class, History.class);
 		responseMap.put(SpecialOptionsClassificationRequest.class, SpecialOptionsClassifications.class);
+		responseMap.put(EquitiesOptionsRequest.class, EquitiesOptionsRequest.class);
 	}
 
 	//
