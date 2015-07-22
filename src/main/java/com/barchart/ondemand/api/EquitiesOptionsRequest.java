@@ -5,9 +5,6 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.barchart.ondemand.api.FuturesOptionsRequest.Builder;
-import com.barchart.ondemand.api.FuturesOptionsRequest.FuturesOptionsRequestType;
-
 public class EquitiesOptionsRequest implements OnDemandRequest {
 	
 	public enum EquitiesOptionsRequestType {
@@ -59,7 +56,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 	
 	private EquitiesOptionsRequest(final Builder b) {
 		
-		this.symbols = StringUtils.join(b.underlying_symbol, ",");
+		this.symbols = StringUtils.join(b.underlying_symbols, ",");
 		this.fields = "";
 		
 		final String type = EquitiesOptionsRequestType.getValue(b.type);
@@ -89,7 +86,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 	public Map<String, Object> parameters() {
 		
 		if (!symbols.isEmpty()) {
-			params.put("underlying_symbol", symbols);
+			params.put("underlying_symbols", symbols);
 		}
 
 		if (!fields.isEmpty()) {
@@ -101,13 +98,13 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 	
 	public static class Builder {
 		
-		private String[] underlying_symbol = new String[] {};
+		private String[] underlying_symbols = new String[] {};
 		private EquitiesOptionsRequestType type;
 		private EquitiesOptionsRequestOptionType optionType;
 
 		
 		public Builder symbols(final String[] symbols) {
-			this.underlying_symbol = symbols;
+			this.underlying_symbols = symbols;
 			return this;
 		}
 
