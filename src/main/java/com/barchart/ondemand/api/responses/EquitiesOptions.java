@@ -3,7 +3,9 @@ package com.barchart.ondemand.api.responses;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -55,6 +57,36 @@ public class EquitiesOptions extends ResponseBase {
 		return results;
 	}
 	
+	public Collection<EquitiesOption> forExpirationDate(final String date) {
+		final List<EquitiesOption> results = new ArrayList<EquitiesOption>();
+
+		for (EquitiesOption f : all()) {
+			if (f.getExpirationDate().equalsIgnoreCase(date)) {
+				results.add(f);
+			}
+		}
+
+		return results;
+	}
 	
+	public Map<String, EquitiesOptions> expirationsForDate(final String date) {
+		final Map<String, EquitiesOptions> results = new HashMap<String, EquitiesOptions>();
+
+		final Collection<EquitiesOption> all = forExpirationDate(date);
+
+		if (all == null) {
+			return new HashMap<String, EquitiesOptions>();
+		}
+
+		for (EquitiesOption a : all) {
+			if (results.get(a.getExpirationDate()) == null) {
+				results.put(a.getExpirationDate(), new EquitiesOptions());
+			}
+
+			results.get(a.getExpirationDate()).results.add(a);
+		}
+
+		return results;
+	}
 	
 }
