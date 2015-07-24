@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "underlying_symbol", "symbol", "exchange", "type", "strike", "expirationDate", "expirationType",
-		"date", "bid", "bidSize", "ask", "askSize", "open", "high", "low", "last", "previous", "change", "percentChange", })
+		"date", "bid", "bidSize", "ask", "askSize", "open", "high", "low", "last", "previous", "change", "percentChange", "volume"})
 public class EquitiesOption {
 
 	@JsonProperty("underlying_symbol")
@@ -47,6 +47,8 @@ public class EquitiesOption {
 	private double change;
 	@JsonProperty("percentChange")
 	private double percentChange;
+	@JsonProperty("volume")
+	private String volume;
 	
 
 	@JsonProperty("underlying_symbol")
@@ -239,6 +241,14 @@ public class EquitiesOption {
 		this.percentChange = percentChange;
 	}
 	
+	@JsonProperty("volume")
+	public String getVolume() {
+		return volume;
+	}
 	
+	@JsonProperty("volume")
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
 
 }

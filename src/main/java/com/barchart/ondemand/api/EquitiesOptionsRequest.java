@@ -74,7 +74,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 
 	@Override
 	public String endpoint() {
-		return "getEquityOptions.json";
+		return "getEquityOptionsIntraday.json";
 	}
 
 	@Override
