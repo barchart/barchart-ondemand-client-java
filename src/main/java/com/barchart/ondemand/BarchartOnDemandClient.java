@@ -140,9 +140,9 @@ public class BarchartOnDemandClient {
 		sb.append(QueryUtil.urlEncodeUTF8(request.parameters()));
 		sb.append("&apikey=");
 		sb.append(apiKey);
-		
+
 		if (request.endpoint().equals("getEquityOptionsIntraday.json")) {
-			sb.append("&fields=ask,bid,volatility,theta,gamma,vega,delta");
+			sb.append("&fields=volatility,delta,gamma,theta,vega,rho,bid,bidSize,bidDate,ask,askSize,askDate,premium,settlement,flag,lastTradeDate");
 		}
 
 		final String response = fetchString(sb.toString(), http);
