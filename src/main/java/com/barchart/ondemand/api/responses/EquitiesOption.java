@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "underlying_symbol", "symbol", "exchange", "type", "strike", "expirationDate", "expirationType",
-		"date", "bid", "bidSize", "ask", "askSize", "open", "high", "low", "last", "previous", "change", "percentChange", "volume"})
+		"date", "volatility", "delta", "gamma", "theta", "vega", "bid", "bidSize", "ask", "askSize", "open", "high", "low", "last", "previous", "change", "percentChange", "volume"})
 public class EquitiesOption {
 
 	@JsonProperty("underlying_symbol")
@@ -25,6 +25,16 @@ public class EquitiesOption {
 	private String expirationType;
 	@JsonProperty("date")
 	private String date;
+	@JsonProperty("volatility")
+	private double volatility;
+	@JsonProperty("delta")
+	private double delta;
+	@JsonProperty("gamma")
+	private double gamma;
+	@JsonProperty("theta")
+	private double theta;
+	@JsonProperty("vega")
+	private double vega;
 	@JsonProperty("bid")
 	private double bid;
 	@JsonProperty("bidSize")
@@ -249,6 +259,56 @@ public class EquitiesOption {
 	@JsonProperty("volume")
 	public void setVolume(String volume) {
 		this.volume = volume;
+	}
+	
+	@JsonProperty("volatility")
+	public double getVolatility() {
+		return volatility;
+	}
+	
+	@JsonProperty("volatility")
+	public void setVolatility(double volatility) {
+		this.volatility = volatility;
+	}
+	
+	@JsonProperty("delta")
+	public double getDelta() {
+		return delta;
+	}
+	
+	@JsonProperty("delta")
+	public void setDelta(double delta) {
+		this.delta = delta;
+	}
+	
+	@JsonProperty("gamma")
+	public double getGamma() {
+		return gamma;
+	}
+	
+	@JsonProperty("gamma")
+	public void setGamma(double gamma) {
+		this.gamma = gamma;
+	}
+	
+	@JsonProperty("theta")
+	public double getTheta() {
+		return theta;
+	}
+
+	@JsonProperty("theta")
+	public void setTheta(double theta) {
+		this.theta = theta;
+	}
+	
+	@JsonProperty("vega")
+	public double getVega() {
+		return vega;
+	}
+	
+	@JsonProperty("vega")
+	public void setVega(double vega) {
+		this.vega = vega;
 	}
 
 }
