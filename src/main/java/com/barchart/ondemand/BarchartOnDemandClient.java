@@ -185,10 +185,6 @@ public class BarchartOnDemandClient {
 		sb.append("&apikey=");
 		sb.append(apiKey);
 
-		if (request.endpoint().equals("getEquityOptionsIntraday.json")) {
-			sb.append("&fields=ask,bid,volatility,theta,gamma,vega,delta");
-		}
-
 		return fetchString(sb.toString(), client);
 
 	}
