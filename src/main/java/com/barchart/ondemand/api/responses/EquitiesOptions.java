@@ -89,4 +89,13 @@ public class EquitiesOptions extends ResponseBase {
 		return results;
 	}
 	
+	public EquitiesOption forSymbol(final String symbol) {
+		for (EquitiesOption f : all()) {
+			if (f.getSymbol().equalsIgnoreCase(symbol)) {
+				return f;
+			}
+		}
+		return null;
+	}
+	
 }
