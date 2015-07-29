@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 public class EquitiesOptionsRequest implements OnDemandRequest {
-	
+
 	public enum EquitiesOptionsRequestType {
 		CALLS, PUTS, ALL;
 
@@ -27,7 +27,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 			}
 		}
 	}
-	
+
 	public enum EquitiesOptionsRequestOptionType {
 		MONTHLY, WEEKLY, ALL;
 
@@ -48,24 +48,25 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 			}
 		}
 	}
-	
+
 	private final String symbols;
 	private final String fields;
-	
+
 	private final Map<String, Object> params = new HashMap<String, Object>();
-	
+
 	private EquitiesOptionsRequest(final Builder b) {
-		
+
 		this.symbols = StringUtils.join(b.underlying_symbols, ",");
-		this.fields = "";
-		
+		this.fields = StringUtils.join(b.fields, ",");
+		;
+
 		final String type = EquitiesOptionsRequestType.getValue(b.type);
 		final String optionType = EquitiesOptionsRequestOptionType.getValue(b.optionType);
-		
+
 		if (!type.isEmpty()) {
 			params.put("type", b.type);
 		}
-		
+
 		if (!optionType.isEmpty()) {
 			params.put("optionType", b.optionType);
 		}
@@ -84,7 +85,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 
 	@Override
 	public Map<String, Object> parameters() {
-		
+
 		if (!symbols.isEmpty()) {
 			params.put("underlying_symbols", symbols);
 		}
@@ -95,20 +96,24 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 
 		return params;
 	}
-	
+
 	public static class Builder {
-		
+
 		private String[] underlying_symbols = new String[] {};
 		private EquitiesOptionsRequestType type;
 		private EquitiesOptionsRequestOptionType optionType;
+		private String[] fields = new String[] { "ask", "bid", "volatility", "theta", "gamma", "vega", "delta" };
 
-		
 		public Builder symbols(final String[] symbols) {
 			this.underlying_symbols = symbols;
 			return this;
 		}
 
-		
+		public Builder fields(final String[] fields) {
+			this.fields = fields;
+			return this;
+		}
+
 		public OnDemandRequest build() {
 			return new EquitiesOptionsRequest(this);
 		}
