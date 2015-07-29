@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "underlying_symbol", "symbol", "exchange", "type", "strike", "expirationDate", "expirationType",
-		"date", "volatility", "delta", "gamma", "theta", "vega", "bid", "bidSize", "ask", "askSize", "open", "high", "low", "last", "previous", "change", "percentChange", "volume"})
+		"date", "volatility", "delta", "gamma", "theta", "vega", "rho", "bid", "bidSize", "bidDate", "ask", "askSize", "askDate", "open", "high", "low", "last", "change", "percentChange", "settlement", "lastTradeDate", "volume"})
 public class EquitiesOption {
 
 	@JsonProperty("underlying_symbol")
@@ -35,14 +35,20 @@ public class EquitiesOption {
 	private double theta;
 	@JsonProperty("vega")
 	private double vega;
+	@JsonProperty("rho")
+	private double rho;
 	@JsonProperty("bid")
 	private double bid;
 	@JsonProperty("bidSize")
 	private int bidSize;
+	@JsonProperty("bidDate")
+	private String bidDate;
 	@JsonProperty("ask")
 	private double ask;
 	@JsonProperty("askSize")
 	private int askSize;
+	@JsonProperty("askDate")
+	private String askDate;
 	@JsonProperty("open")
 	private double open;
 	@JsonProperty("high")
@@ -51,14 +57,16 @@ public class EquitiesOption {
 	private double low;
 	@JsonProperty("last")
 	private double last;
-	@JsonProperty("previous")
-	private double previous;
 	@JsonProperty("change")
 	private double change;
-	@JsonProperty("percentChange")
-	private double percentChange;
 	@JsonProperty("volume")
 	private String volume;
+	@JsonProperty("settlement")
+	private double settlement;
+	@JsonProperty("lastTradeDate")
+	private String lastTradeDate;
+	@JsonProperty("percentChange")
+	private double percentChange;
 	
 
 	@JsonProperty("underlying_symbol")
@@ -221,16 +229,6 @@ public class EquitiesOption {
 		this.last = last;
 	}
 
-	@JsonProperty("previous")
-	public double getPrevious() {
-		return previous;
-	}
-
-	@JsonProperty("previous")
-	public void setPrevious(double previous) {
-		this.previous = previous;
-	}
-
 	@JsonProperty("change")
 	public double getChange() {
 		return change;
@@ -240,17 +238,57 @@ public class EquitiesOption {
 	public void setChange(double change) {
 		this.change = change;
 	}
-
-	@JsonProperty("percentChange")
-	public double getPercentChange() {
-		return percentChange;
-	}
-
-	@JsonProperty("percentChange")
-	public void setPercentChange(double percentChange) {
-		this.percentChange = percentChange;
+	
+	@JsonProperty("rho")
+	public double getRho() {
+		return rho;
 	}
 	
+	@JsonProperty("rho")
+	public void setRho(double rho) {
+		this.rho = rho;
+	}
+
+	@JsonProperty("bidDate")
+	public String getBidDate() {
+		return bidDate;
+	}
+
+	@JsonProperty("bidDate")
+	public void setBidDate(String bidDate) {
+		this.bidDate = bidDate;
+	}
+
+	@JsonProperty("askDate")
+	public String getAskDate() {
+		return askDate;
+	}
+
+	@JsonProperty("askDate")
+	public void setAskDate(String askDate) {
+		this.askDate = askDate;
+	}
+
+	@JsonProperty("settlement")
+	public double getSettlement() {
+		return settlement;
+	}
+
+	@JsonProperty("settlement")
+	public void setSettlement(double settlement) {
+		this.settlement = settlement;
+	}
+
+	@JsonProperty("lastTradeDate")
+	public String getLastTradeDate() {
+		return lastTradeDate;
+	}
+
+	@JsonProperty("lastTradeDate")
+	public void setLastTradeDate(String lastTradeDate) {
+		this.lastTradeDate = lastTradeDate;
+	}
+
 	@JsonProperty("volume")
 	public String getVolume() {
 		return volume;
@@ -309,6 +347,16 @@ public class EquitiesOption {
 	@JsonProperty("vega")
 	public void setVega(double vega) {
 		this.vega = vega;
+	}
+	
+	@JsonProperty("percentChange")
+	public double getPercentChange() {
+		return percentChange;
+	}
+	
+	@JsonProperty("percentChange")
+	public void setPercentChange(double percentChange) {
+		this.percentChange = percentChange;
 	}
 
 }

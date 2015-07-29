@@ -101,7 +101,7 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 		private String[] underlying_symbols = new String[] {};
 		private EquitiesOptionsRequestType type;
 		private EquitiesOptionsRequestOptionType optionType;
-		private String[] fields = new String[] { "ask", "bid", "volatility", "theta", "gamma", "vega", "delta" };
+		private String[] fields = new String[] { "ask", "bid", "volatility", "theta", "gamma", "vega", "delta", "rho", "bidSize", "askSize", "bidDate", "askDate", "settlement", "lastTradeDate" };
 
 		public Builder symbols(final String[] symbols) {
 			this.underlying_symbols = symbols;
