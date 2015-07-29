@@ -58,7 +58,6 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 
 		this.symbols = StringUtils.join(b.underlying_symbols, ",");
 		this.fields = StringUtils.join(b.fields, ",");
-		;
 
 		final String type = EquitiesOptionsRequestType.getValue(b.type);
 		final String optionType = EquitiesOptionsRequestOptionType.getValue(b.optionType);
