@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "underlying_symbol", "symbol", "exchange", "type", "strike", "expirationDate", "expirationType",
-		"date", "volatility", "delta", "gamma", "theta", "vega", "rho", "bid", "bidSize", "bidDate", "ask", "askSize", "askDate", "open", "high", "low", "last", "change", "percentChange", "settlement", "lastTradeDate", "volume"})
+		"date", "volatility", "delta", "gamma", "theta", "vega", "rho", "bid", "bidSize", "bidDate", "ask", "askSize",
+		"askDate", "open", "high", "low", "last", "change", "percentChange", "settlement", "lastTradeDate", "volume",
+		"openInterest"})
 public class EquitiesOption {
 
 	@JsonProperty("underlying_symbol")
@@ -67,6 +69,8 @@ public class EquitiesOption {
 	private String lastTradeDate;
 	@JsonProperty("percentChange")
 	private double percentChange;
+	@JsonProperty("openInterest")
+	private String openInterest;
 	
 
 	@JsonProperty("underlying_symbol")
@@ -297,6 +301,16 @@ public class EquitiesOption {
 	@JsonProperty("volume")
 	public void setVolume(String volume) {
 		this.volume = volume;
+	}
+	
+	@JsonProperty("openInterest")
+	public String getOpenInterest() {
+		return openInterest;
+	}
+	
+	@JsonProperty("openInterest")
+	public void setOpenInterest(String openInterest) {
+		this.openInterest = openInterest;
 	}
 	
 	@JsonProperty("volatility")
