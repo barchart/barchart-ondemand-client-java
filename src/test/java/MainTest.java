@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 import org.joda.time.DateTime;
 
 import com.barchart.ondemand.api.BalanceSheetsRequest;
+import com.barchart.ondemand.api.CashGrainBidsRequest;
 import com.barchart.ondemand.api.ChartRequest;
 import com.barchart.ondemand.api.CompetitorsRequest;
 import com.barchart.ondemand.api.CompetitorsRequest.CompetitorsRequestField;
@@ -37,6 +38,7 @@ import com.barchart.ondemand.api.TechnicalsRequestField;
 import com.barchart.ondemand.api.USDAGrainsRequest;
 import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
+import com.barchart.ondemand.api.responses.CashGrainBids;
 import com.barchart.ondemand.api.responses.Charts;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
@@ -83,6 +85,8 @@ public class MainTest {
 	}
 
 	public MainTest() throws IOException {
+		
+		testCashGrainBids();
 
 		if (true) {
 			testSpecialOptions();
@@ -203,6 +207,21 @@ public class MainTest {
 		final History history = JsonUtil.fromJson(History.class, HttpUtil.fetchString(url));
 
 		System.out.println("History = " + history.all());
+	}
+	
+	private void testCashGrainBids() throws IOException {
+
+		final CashGrainBidsRequest.Builder builder = new CashGrainBidsRequest.Builder();
+
+		final OnDemandRequest p = builder.build();
+
+		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
+
+		System.out.println("CashGrainBidsRequest ENDPOINT = " + url);
+
+		final CashGrainBids bids = JsonUtil.fromJson(CashGrainBids.class, HttpUtil.fetchString(url));
+
+		System.out.println("CashGrainBids = " + bids.getResults());
 	}
 
 	private void testProfiles() throws IOException {

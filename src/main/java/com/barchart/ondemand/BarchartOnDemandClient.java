@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.barchart.ondemand.api.BalanceSheetsRequest;
+import com.barchart.ondemand.api.CashGrainBidsRequest;
 import com.barchart.ondemand.api.ChartRequest;
 import com.barchart.ondemand.api.CompetitorsRequest;
 import com.barchart.ondemand.api.CorporateActionsRequest;
@@ -33,6 +34,7 @@ import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.USDAGrainsRequest;
 import com.barchart.ondemand.api.WeatherRequest;
 import com.barchart.ondemand.api.responses.BalanceSheets;
+import com.barchart.ondemand.api.responses.CashGrainBids;
 import com.barchart.ondemand.api.responses.Charts;
 import com.barchart.ondemand.api.responses.Competitors;
 import com.barchart.ondemand.api.responses.CorporateActions;
@@ -122,6 +124,7 @@ public class BarchartOnDemandClient {
 		responseMap.put(HistoryRequest.class, History.class);
 		responseMap.put(SpecialOptionsClassificationRequest.class, SpecialOptionsClassifications.class);
 		responseMap.put(EquitiesOptionsRequest.class, EquitiesOptions.class);
+		responseMap.put(CashGrainBidsRequest.class, CashGrainBids.class);
 	}
 
 	//
