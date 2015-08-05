@@ -5,7 +5,13 @@ import java.util.Map;
 
 public class CashGrainBidsRequest implements OnDemandRequest {
 	
+	private final String zipCode;
+	
+	private final Map<String, Object> params = new HashMap<String, Object>();
+	
 	private CashGrainBidsRequest(Builder builder) {
+		
+		this.zipCode = builder.zipCode;
 		
 	}
 
@@ -21,11 +27,20 @@ public class CashGrainBidsRequest implements OnDemandRequest {
 
 	@Override
 	public Map<String, Object> parameters() {
-		// TODO Auto-generated method stub
-		return new HashMap<String, Object>();
+		if (!zipCode.isEmpty()) {
+			params.put("zipCode", zipCode);
+		}
+		return params;
 	}
 	
 	public static class Builder {
+		
+		String zipCode;
+		
+		public Builder zipCode(final String zipCode) {
+			this.zipCode = zipCode;
+			return this;
+		}
 
 		public OnDemandRequest build() {
 			return new CashGrainBidsRequest(this);

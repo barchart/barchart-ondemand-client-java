@@ -213,7 +213,7 @@ public class MainTest {
 
 		final CashGrainBidsRequest.Builder builder = new CashGrainBidsRequest.Builder();
 
-		final OnDemandRequest p = builder.build();
+		final OnDemandRequest p = builder.zipCode("60657").build();
 
 		final String url = OnDemandRequest.BASE_URL + p.endpoint() + "?" + QueryUtil.urlEncodeUTF8(p.parameters());
 
