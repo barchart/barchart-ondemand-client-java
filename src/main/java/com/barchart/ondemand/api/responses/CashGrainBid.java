@@ -14,320 +14,294 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-"bids",
-"distance",
-"company",
-"locationId",
-"location",
-"address",
-"city",
-"state",
-"lng",
-"lat",
-"phone",
-"url",
-"zip"
-})
+@JsonPropertyOrder({ "bids", "distance", "company", "locationId", "location", "address", "city", "state", "lng", "lat",
+		"phone", "url", "zip" })
 public class CashGrainBid {
 
-@JsonProperty("bids")
-private List<Bid> bids = new ArrayList<Bid>();
-@JsonProperty("distance")
-private String distance;
-@JsonProperty("company")
-private String company;
-@JsonProperty("locationId")
-private String locationId;
-@JsonProperty("location")
-private String location;
-@JsonProperty("address")
-private String address;
-@JsonProperty("city")
-private String city;
-@JsonProperty("state")
-private String state;
-@JsonProperty("lng")
-private String lng;
-@JsonProperty("lat")
-private String lat;
-@JsonProperty("phone")
-private String phone;
-@JsonProperty("url")
-private String url;
-@JsonProperty("zip")
-private String zip;
-@JsonIgnore
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	@JsonProperty("bids")
+	private List<Bid> bids = new ArrayList<Bid>();
+	@JsonProperty("distance")
+	private String distance;
+	@JsonProperty("company")
+	private String company;
+	@JsonProperty("locationId")
+	private String locationId;
+	@JsonProperty("location")
+	private String location;
+	@JsonProperty("address")
+	private String address;
+	@JsonProperty("city")
+	private String city;
+	@JsonProperty("state")
+	private String state;
+	@JsonProperty("lng")
+	private String lng;
+	@JsonProperty("lat")
+	private String lat;
+	@JsonProperty("phone")
+	private String phone;
+	@JsonProperty("url")
+	private String url;
+	@JsonProperty("zip")
+	private String zip;
+	@JsonIgnore
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-/**
-* 
-* @return
-* The bids
-*/
-@JsonProperty("bids")
-public List<Bid> getBids() {
-return bids;
-}
+	/**
+	 * 
+	 * @return The bids
+	 */
+	@JsonProperty("bids")
+	public List<Bid> getBids() {
+		return bids;
+	}
 
-/**
-* 
-* @param bids
-* The bids
-*/
-@JsonProperty("bids")
-public void setBids(List<Bid> bids) {
-this.bids = bids;
-}
+	/**
+	 * 
+	 * @param bids
+	 *            The bids
+	 */
+	@JsonProperty("bids")
+	public void setBids(List<Bid> bids) {
+		this.bids = bids;
+	}
 
-/**
-* 
-* @return
-* The distance
-*/
-@JsonProperty("distance")
-public String getDistance() {
-return distance;
-}
+	/**
+	 * 
+	 * @return The distance
+	 */
+	@JsonProperty("distance")
+	public String getDistance() {
+		return distance;
+	}
 
-/**
-* 
-* @param distance
-* The distance
-*/
-@JsonProperty("distance")
-public void setDistance(String distance) {
-this.distance = distance;
-}
+	/**
+	 * 
+	 * @param distance
+	 *            The distance
+	 */
+	@JsonProperty("distance")
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 
-/**
-* 
-* @return
-* The company
-*/
-@JsonProperty("company")
-public String getCompany() {
-return company;
-}
+	/**
+	 * 
+	 * @return The company
+	 */
+	@JsonProperty("company")
+	public String getCompany() {
+		return company;
+	}
 
-/**
-* 
-* @param company
-* The company
-*/
-@JsonProperty("company")
-public void setCompany(String company) {
-this.company = company;
-}
+	/**
+	 * 
+	 * @param company
+	 *            The company
+	 */
+	@JsonProperty("company")
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
-/**
-* 
-* @return
-* The locationId
-*/
-@JsonProperty("locationId")
-public String getLocationId() {
-return locationId;
-}
+	/**
+	 * 
+	 * @return The locationId
+	 */
+	@JsonProperty("locationId")
+	public String getLocationId() {
+		return locationId;
+	}
 
-/**
-* 
-* @param locationId
-* The locationId
-*/
-@JsonProperty("locationId")
-public void setLocationId(String locationId) {
-this.locationId = locationId;
-}
+	/**
+	 * 
+	 * @param locationId
+	 *            The locationId
+	 */
+	@JsonProperty("locationId")
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
 
-/**
-* 
-* @return
-* The location
-*/
-@JsonProperty("location")
-public String getLocation() {
-return location;
-}
+	/**
+	 * 
+	 * @return The location
+	 */
+	@JsonProperty("location")
+	public String getLocation() {
+		return location;
+	}
 
-/**
-* 
-* @param location
-* The location
-*/
-@JsonProperty("location")
-public void setLocation(String location) {
-this.location = location;
-}
+	/**
+	 * 
+	 * @param location
+	 *            The location
+	 */
+	@JsonProperty("location")
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-/**
-* 
-* @return
-* The address
-*/
-@JsonProperty("address")
-public String getAddress() {
-return address;
-}
+	/**
+	 * 
+	 * @return The address
+	 */
+	@JsonProperty("address")
+	public String getAddress() {
+		return address;
+	}
 
-/**
-* 
-* @param address
-* The address
-*/
-@JsonProperty("address")
-public void setAddress(String address) {
-this.address = address;
-}
+	/**
+	 * 
+	 * @param address
+	 *            The address
+	 */
+	@JsonProperty("address")
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-/**
-* 
-* @return
-* The city
-*/
-@JsonProperty("city")
-public String getCity() {
-return city;
-}
+	/**
+	 * 
+	 * @return The city
+	 */
+	@JsonProperty("city")
+	public String getCity() {
+		return city;
+	}
 
-/**
-* 
-* @param city
-* The city
-*/
-@JsonProperty("city")
-public void setCity(String city) {
-this.city = city;
-}
+	/**
+	 * 
+	 * @param city
+	 *            The city
+	 */
+	@JsonProperty("city")
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-/**
-* 
-* @return
-* The state
-*/
-@JsonProperty("state")
-public String getState() {
-return state;
-}
+	/**
+	 * 
+	 * @return The state
+	 */
+	@JsonProperty("state")
+	public String getState() {
+		return state;
+	}
 
-/**
-* 
-* @param state
-* The state
-*/
-@JsonProperty("state")
-public void setState(String state) {
-this.state = state;
-}
+	/**
+	 * 
+	 * @param state
+	 *            The state
+	 */
+	@JsonProperty("state")
+	public void setState(String state) {
+		this.state = state;
+	}
 
-/**
-* 
-* @return
-* The lng
-*/
-@JsonProperty("lng")
-public String getLng() {
-return lng;
-}
+	/**
+	 * 
+	 * @return The lng
+	 */
+	@JsonProperty("lng")
+	public String getLng() {
+		return lng;
+	}
 
-/**
-* 
-* @param lng
-* The lng
-*/
-@JsonProperty("lng")
-public void setLng(String lng) {
-this.lng = lng;
-}
+	/**
+	 * 
+	 * @param lng
+	 *            The lng
+	 */
+	@JsonProperty("lng")
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
 
-/**
-* 
-* @return
-* The lat
-*/
-@JsonProperty("lat")
-public String getLat() {
-return lat;
-}
+	/**
+	 * 
+	 * @return The lat
+	 */
+	@JsonProperty("lat")
+	public String getLat() {
+		return lat;
+	}
 
-/**
-* 
-* @param lat
-* The lat
-*/
-@JsonProperty("lat")
-public void setLat(String lat) {
-this.lat = lat;
-}
+	/**
+	 * 
+	 * @param lat
+	 *            The lat
+	 */
+	@JsonProperty("lat")
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
 
-/**
-* 
-* @return
-* The phone
-*/
-@JsonProperty("phone")
-public String getPhone() {
-return phone;
-}
+	/**
+	 * 
+	 * @return The phone
+	 */
+	@JsonProperty("phone")
+	public String getPhone() {
+		return phone;
+	}
 
-/**
-* 
-* @param phone
-* The phone
-*/
-@JsonProperty("phone")
-public void setPhone(String phone) {
-this.phone = phone;
-}
+	/**
+	 * 
+	 * @param phone
+	 *            The phone
+	 */
+	@JsonProperty("phone")
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-/**
-* 
-* @return
-* The url
-*/
-@JsonProperty("url")
-public String getUrl() {
-return url;
-}
+	/**
+	 * 
+	 * @return The url
+	 */
+	@JsonProperty("url")
+	public String getUrl() {
+		return url;
+	}
 
-/**
-* 
-* @param url
-* The url
-*/
-@JsonProperty("url")
-public void setUrl(String url) {
-this.url = url;
-}
+	/**
+	 * 
+	 * @param url
+	 *            The url
+	 */
+	@JsonProperty("url")
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-/**
-* 
-* @return
-* The zip
-*/
-@JsonProperty("zip")
-public String getZip() {
-return zip;
-}
+	/**
+	 * 
+	 * @return The zip
+	 */
+	@JsonProperty("zip")
+	public String getZip() {
+		return zip;
+	}
 
-/**
-* 
-* @param zip
-* The zip
-*/
-@JsonProperty("zip")
-public void setZip(String zip) {
-this.zip = zip;
-}
+	/**
+	 * 
+	 * @param zip
+	 *            The zip
+	 */
+	@JsonProperty("zip")
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 
-@JsonAnyGetter
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
 
-@JsonAnySetter
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	@JsonAnySetter
+	public void setAdditionalProperty(String name, Object value) {
+		this.additionalProperties.put(name, value);
+	}
 
 }
