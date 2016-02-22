@@ -60,6 +60,14 @@ System.out.println("Quote by symbol = " + JsonUtil.intoJson(quotes.bySymbol("AAP
 
 ##### Maven
 ```xml
+<!-- version 2 (latest) -->
+<dependency>
+	<groupId>com.barchart.base</groupId>
+	<artifactId>barchart-ondemand-client</artifactId>
+	<version>2.0.1</version>
+</dependency>
+
+<!-- version 1 (deprecated & frozen) -->
 <dependency>
 	<groupId>com.barchart.base</groupId>
 	<artifactId>barchart-ondemand-client</artifactId>
