@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class EquitiesOptionsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.EquitiesOptions;
+
+public class EquitiesOptionsRequest implements OnDemandRequest<EquitiesOptions> {
 
 	public enum EquitiesOptionsRequestType {
 		CALLS, PUTS, ALL;
@@ -101,7 +103,8 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 		private String[] underlying_symbols = new String[] {};
 		private EquitiesOptionsRequestType type;
 		private EquitiesOptionsRequestOptionType optionType;
-		private String[] fields = new String[] { "ask", "bid", "volatility", "theta", "gamma", "vega", "delta", "rho", "bidSize", "askSize", "bidDate", "askDate", "settlement", "lastTradeDate", "openInterest" };
+		private String[] fields = new String[] { "ask", "bid", "volatility", "theta", "gamma", "vega", "delta", "rho",
+				"bidSize", "askSize", "bidDate", "askDate", "settlement", "lastTradeDate", "openInterest" };
 
 		public Builder symbols(final String[] symbols) {
 			this.underlying_symbols = symbols;
@@ -113,9 +116,14 @@ public class EquitiesOptionsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public OnDemandRequest<EquitiesOptions> build() {
 			return new EquitiesOptionsRequest(this);
 		}
+	}
+
+	@Override
+	public Class<EquitiesOptions> responseType() {
+		return EquitiesOptions.class;
 	}
 
 }

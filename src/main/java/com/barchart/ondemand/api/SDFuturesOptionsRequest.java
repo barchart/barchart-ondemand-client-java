@@ -3,26 +3,29 @@ package com.barchart.ondemand.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SDFuturesOptionsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.SDFuturesOptions;
+
+public class SDFuturesOptionsRequest implements OnDemandRequest<SDFuturesOptions> {
 
 	public enum FuturesOptionsRequestType {
-		CALLS, PUTS, ALL;
+		CALLS("Call"), PUTS("Put"), ALL("");
+
+		private final String value;
+
+		private FuturesOptionsRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(FuturesOptionsRequestType field) {
 			if (field == null) {
 				return "";
 			}
 
-			switch (field) {
-			case CALLS:
-				return "Call";
-			case PUTS:
-				return "Puts";
-			case ALL:
-				return "";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 	}
 
@@ -71,6 +74,11 @@ public class SDFuturesOptionsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<SDFuturesOptions> responseType() {
+		return SDFuturesOptions.class;
+	}
+
 	public static class Builder {
 
 		private FuturesOptionsRequestType type;
@@ -87,7 +95,7 @@ public class SDFuturesOptionsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public SDFuturesOptionsRequest build() {
 			return new SDFuturesOptionsRequest(this);
 		}
 	}

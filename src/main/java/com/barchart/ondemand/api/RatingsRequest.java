@@ -5,22 +5,21 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class RatingsRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Ratings;
+
+public class RatingsRequest implements OnDemandRequest<Ratings> {
 
 	public enum RatingsRequestField {
-		STRONG_BUY, HOLD, STRONG_SELL;
+		STRONG_BUY("strongBuy"), HOLD("hold"), STRONG_SELL("strongSell");
 
-		public String getValue(RatingsRequestField field) {
-			switch (field) {
-			case STRONG_BUY:
-				return "strongBuy";
-			case HOLD:
-				return "hold";
-			case STRONG_SELL:
-				return "strongSell";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private RatingsRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 
 		public static String forQuery(RatingsRequestField[] fields) {
@@ -34,7 +33,7 @@ public class RatingsRequest implements OnDemandRequest {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			return sb.toString();
@@ -78,6 +77,11 @@ public class RatingsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Ratings> responseType() {
+		return Ratings.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -93,7 +97,7 @@ public class RatingsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public RatingsRequest build() {
 			return new RatingsRequest(this);
 		}
 	}

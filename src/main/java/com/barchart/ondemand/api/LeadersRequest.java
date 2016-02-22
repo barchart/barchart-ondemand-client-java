@@ -5,113 +5,66 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class LeadersRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.Leaders;
+
+public class LeadersRequest implements OnDemandRequest<Leaders> {
 
 	public enum LeadersAssetType {
-		STOCK, ETF, FUTURE, FUND, FOREX;
+		STOCK("STK"), ETF("ETF"), FUTURE("FUT"), FUND("FUND"), FOREX("FOREX");
+
+		private final String value;
+
+		private LeadersAssetType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(LeadersAssetType field) {
 			if (field == null) {
 				return "";
 			}
 
-			switch (field) {
-			case STOCK:
-				return "STK";
-			case ETF:
-				return "ETF";
-			case FUTURE:
-				return "FUT";
-			case FUND:
-				return "FUND";
-			case FOREX:
-				return "FOREX";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 	}
 
 	public enum LeadersRequestType {
-		ACTIVE, ACTIVE_5_DAY, ACTIVE_1_MONTH, ACTIVE_3_MONTH, ACTIVE_6_MONTH, ACTIVE_9_MONTH, ACTIVE_12_MONTH, ACTIVE_YTD, //
-		GAINERS, GAINERS_5_DAY, GAINERS_1_MONTH, GAINERS_3_MONTH, GAINERS_6_MONTH, GAINERS_9_MONTH, GAINERS_12_MONTH, GAINERS_YTD, //
-		LOSERS, LOSERS_5_DAY, LOSERS_1_MONTH, LOSERS_3_MONTH, LOSERS_6_MONTH, LOSERS_9_MONTH, LOSERS_12_MONTH, LOSERS_YTD, //
-		HOT, HOT_DAILY, HOT_WEEKLY, HOT_MONTHLY, //
-		NOT_HOT, NOT_HOT_DAILY, NOT_HOT_WEEKLY, NOT_HOT_MONTHLY;
+		// Active
+		ACTIVE("active"), ACTIVE_5_DAY("active_5d"),
+		ACTIVE_1_MONTH("active_1m"), ACTIVE_3_MONTH("active_3m"), ACTIVE_6_MONTH("active_6m"), ACTIVE_9_MONTH("active_9m"),
+		ACTIVE_12_MONTH("active_12m"), ACTIVE_YTD("active_ytd"),
+		// Gainers
+		GAINERS("gainers"), GAINERS_5_DAY("gainers_5d"),
+		GAINERS_1_MONTH("gainers_1m"), GAINERS_3_MONTH("gainers_3m"), GAINERS_6_MONTH("gainers_6m"), GAINERS_9_MONTH("gainers_9m"),
+		GAINERS_12_MONTH("gainers_12m"), GAINERS_YTD("gainers_ytd"),
+		// Losers
+		LOSERS("losers"), LOSERS_5_DAY("losers_5d"),
+		LOSERS_1_MONTH("losers_1m"), LOSERS_3_MONTH("losers_3m"), LOSERS_6_MONTH("losers_6m"), LOSERS_9_MONTH("losers_9m"),
+		LOSERS_12_MONTH("losers_12m"), LOSERS_YTD("losers_ytd"),
+		// Hot
+		HOT("hot"), HOT_DAILY("hot_daily"), HOT_WEEKLY("hot_weekly"), HOT_MONTHLY("hot_monthly"),
+		// Not hot
+		NOT_HOT("nothot"), NOT_HOT_DAILY("nothot_daily"), NOT_HOT_WEEKLY("nothot_weekly"), NOT_HOT_MONTHLY("nothot_monthly");
+
+		private final String value;
+
+		private LeadersRequestType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
 
 		public static String getValue(LeadersRequestType field) {
 			if (field == null) {
 				return "";
 			}
 
-			switch (field) {
-			case ACTIVE: // Active
-				return "active";
-			case ACTIVE_5_DAY:
-				return "active_5d";
-			case ACTIVE_1_MONTH:
-				return "active_1m";
-			case ACTIVE_3_MONTH:
-				return "active_3m";
-			case ACTIVE_6_MONTH:
-				return "active_6m";
-			case ACTIVE_9_MONTH:
-				return "active_9m";
-			case ACTIVE_12_MONTH:
-				return "active_12m";
-			case ACTIVE_YTD:
-				return "active_ytd";
-			case GAINERS: // Gainers
-				return "gainers";
-			case GAINERS_5_DAY:
-				return "gainers_5d";
-			case GAINERS_1_MONTH:
-				return "gainers_1m";
-			case GAINERS_3_MONTH:
-				return "gainers_3m";
-			case GAINERS_6_MONTH:
-				return "gainers_6m";
-			case GAINERS_9_MONTH:
-				return "gainers_9m";
-			case GAINERS_12_MONTH:
-				return "gainers_12m";
-			case GAINERS_YTD:
-				return "gainers_ytd";
-			case LOSERS: // Losers
-				return "losers";
-			case LOSERS_5_DAY:
-				return "losers_5d";
-			case LOSERS_1_MONTH:
-				return "losers_1m";
-			case LOSERS_3_MONTH:
-				return "losers_3m";
-			case LOSERS_6_MONTH:
-				return "losers_6m";
-			case LOSERS_9_MONTH:
-				return "losers_9m";
-			case LOSERS_12_MONTH:
-				return "losers_12m";
-			case LOSERS_YTD:
-				return "losers_ytd";
-			case HOT: // Hot
-				return "hot";
-			case HOT_DAILY:
-				return "hot_daily";
-			case HOT_WEEKLY:
-				return "hot_weekly";
-			case HOT_MONTHLY:
-				return "hot_monthly";
-			case NOT_HOT: // Not Hot
-				return "nothot";
-			case NOT_HOT_DAILY:
-				return "nothot_daily";
-			case NOT_HOT_WEEKLY:
-				return "nothot_weekly";
-			case NOT_HOT_MONTHLY:
-				return "nothot_monthly";
-			default:
-				return "";
-			}
+			return field.getValue();
 		}
 	}
 
@@ -169,6 +122,11 @@ public class LeadersRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<Leaders> responseType() {
+		return Leaders.class;
+	}
+
 	public static class Builder {
 
 		private String[] exchanges;
@@ -191,7 +149,7 @@ public class LeadersRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public LeadersRequest build() {
 
 			if (type == null) {
 				throw new IllegalArgumentException("you must set the type field, LeadersRequestType");

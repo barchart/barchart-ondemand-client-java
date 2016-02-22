@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class IncomeStatementRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.IncomeStatements;
+
+public class IncomeStatementRequest implements OnDemandRequest<IncomeStatements> {
 
 	private final String symbols;
 	private final String fields;
@@ -17,7 +19,7 @@ public class IncomeStatementRequest implements OnDemandRequest {
 		this.symbols = StringUtils.join(b.symbols, ",");
 
 		if (b.frequency != null) {
-			params.put("frequency", b.frequency.getValue(b.frequency));
+			params.put("frequency", b.frequency.getValue());
 		} else {
 			params.put("frequency", GenericRequestField.QUARTER);
 		}
@@ -52,6 +54,11 @@ public class IncomeStatementRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<IncomeStatements> responseType() {
+		return IncomeStatements.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -73,7 +80,7 @@ public class IncomeStatementRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public IncomeStatementRequest build() {
 			return new IncomeStatementRequest(this);
 		}
 	}

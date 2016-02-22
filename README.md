@@ -44,7 +44,7 @@ builder.mode(QuoteRequestMode.REAL_TIME);
 builder.fields(new QuoteRequestField[] { QuoteRequestField._52_WEEK_HIGH_DATE });
 
 /* fetch results */
-final Quotes quotes = (Quotes) onDemand.fetch(builder.build());
+final Quotes quotes = onDemand.fetch(builder.build());
 
 for (Quote q : quotes.all()) {
 	System.out.println("Quote for : " + q.getSymbol() + " = " + q);

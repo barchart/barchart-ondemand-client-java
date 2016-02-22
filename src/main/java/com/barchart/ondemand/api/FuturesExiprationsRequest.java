@@ -64,6 +64,11 @@ public class FuturesExiprationsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class responseType() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
 	public static class Builder {
 		private String[] symbols;
 		private String[] exchanges;
@@ -78,7 +83,7 @@ public class FuturesExiprationsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public FuturesExiprationsRequest build() {
 			return new FuturesExiprationsRequest(this);
 		}
 	}

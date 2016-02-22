@@ -2,58 +2,23 @@ package com.barchart.ondemand.api;
 
 public enum SignalsRequestField {
 
-	TREND_SPOTTER, ADI_7_DAY, MA_HI_LO_10_DAY, MA_20_DAY, MACD_20_DAY, BB_BANDS_20_DAY, SHORT_TERM_AVG, SHORT_TERM_AVG_PCT, //
-	CCI_40_DAY, MA_50_DAY, MACD_20_100_DAY, PARABOL_50_DAY, MEDIUM_TERM_AVG, MEDIUM_TERM_AVG_PCT, //
-	CCI_60_DAY, MA_100_DAY, MACD_50_100_DAY, LONG_TERM_AVG, LONG_TERM_AVG_PCT, //
-	OVERALL_AVG, OVERALL_AVG_PCT;
+	TREND_SPOTTER("trendspotterOpinion"), ADI_7_DAY("adi7DayOpinion"),
+	MA_HI_LO_10_DAY("maHiLo10_8DayOpinion"), MA_20_DAY("ma20DaySignal"), MACD_20_DAY("macd20_50DaySignal"),
+	BB_BANDS_20_DAY("bbands20DaySignal"), SHORT_TERM_AVG("shortTermAverageSignal"), SHORT_TERM_AVG_PCT("shortTermAveragePercent"),
+	CCI_40_DAY("cci40DaySignal"), MA_50_DAY("ma50DaySignal"), MACD_20_100_DAY("macd20_100DaySignal"),
+	PARABOL_50_DAY("parabolic50DaySignal"), MEDIUM_TERM_AVG("mediumTermAverageSignal"), MEDIUM_TERM_AVG_PCT("mediumTermAveragePercent"),
+	CCI_60_DAY("cci60DaySignal"), MA_100_DAY("ma100DaySignal"), MACD_50_100_DAY("macd50_100DaySignal"),
+	LONG_TERM_AVG("longTermAverageSignal"), LONG_TERM_AVG_PCT("longTermAveragePercent"),
+	OVERALL_AVG("overallAverageSignal"), OVERALL_AVG_PCT("overallAveragePercent");
 
-	public String getValue(SignalsRequestField field) {
-		switch (field) {
-		case TREND_SPOTTER:
-			return "trendspotterOpinion";
-		case ADI_7_DAY:
-			return "adi7DayOpinion";
-		case MA_HI_LO_10_DAY:
-			return "maHiLo10_8DayOpinion";
-		case MA_20_DAY:
-			return "ma20DaySignal";
-		case MACD_20_DAY:
-			return "macd20_50DaySignal";
-		case BB_BANDS_20_DAY:
-			return "bbands20DaySignal";
-		case SHORT_TERM_AVG:
-			return "shortTermAverageSignal";
-		case SHORT_TERM_AVG_PCT:
-			return "shortTermAveragePercent";
-		case CCI_40_DAY:
-			return "cci40DaySignal";
-		case MA_50_DAY:
-			return "ma50DaySignal";
-		case MACD_20_100_DAY:
-			return "macd20_100DaySignal";
-		case PARABOL_50_DAY:
-			return "parabolic50DaySignal";
-		case MEDIUM_TERM_AVG:
-			return "mediumTermAverageSignal";
-		case MEDIUM_TERM_AVG_PCT:
-			return "mediumTermAveragePercent";
-		case CCI_60_DAY:
-			return "cci60DaySignal";
-		case MA_100_DAY:
-			return "ma100DaySignal";
-		case MACD_50_100_DAY:
-			return "macd50_100DaySignal";
-		case LONG_TERM_AVG:
-			return "longTermAverageSignal";
-		case LONG_TERM_AVG_PCT:
-			return "longTermAveragePercent";
-		case OVERALL_AVG:
-			return "overallAverageSignal";
-		case OVERALL_AVG_PCT:
-			return "overallAveragePercent";
-		default:
-			return "";
-		}
+	private final String value;
+
+	private SignalsRequestField(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
 	}
 
 	public static SignalsRequestField[] all() {
@@ -72,7 +37,7 @@ public enum SignalsRequestField {
 			if (sb.length() > 0) {
 				sb.append(',');
 			}
-			sb.append(f.getValue(f));
+			sb.append(f.getValue());
 		}
 
 		return sb.toString();
