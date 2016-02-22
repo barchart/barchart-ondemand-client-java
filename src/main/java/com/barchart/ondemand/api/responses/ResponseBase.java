@@ -16,19 +16,19 @@ public class ResponseBase implements OnDemandResponse {
 	@JsonProperty("status")
 	protected final Map<String, Object> status = new HashMap<String, Object>();
 
-	protected OnDemandRequest request;
+	protected OnDemandRequest<?> request;
 	protected BarchartOnDemandClient client;
 
 	public ResponseBase() {
 
 	}
 
-	public void configure(final OnDemandRequest r, final BarchartOnDemandClient c) {
+	public void configure(final OnDemandRequest<?> r, final BarchartOnDemandClient c) {
 		this.request = r;
 		this.client = c;
 	}
 
-	public OnDemandRequest getRequest() {
+	public OnDemandRequest<?> getRequest() {
 		return this.request;
 	}
 

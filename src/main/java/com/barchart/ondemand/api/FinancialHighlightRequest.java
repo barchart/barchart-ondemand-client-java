@@ -5,22 +5,21 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-public class FinancialHighlightRequest implements OnDemandRequest {
+import com.barchart.ondemand.api.responses.FinancialHighlights;
+
+public class FinancialHighlightRequest implements OnDemandRequest<FinancialHighlights> {
 
 	public enum FinancialHighlightRequestField {
-		LAST_QTR_EPS, ANNUAL_EPS, TTM_EPS;
+		LAST_QTR_EPS("lastQtrEPS"), ANNUAL_EPS("annualEPS"), TTM_EPS("ttmEPS");
 
-		public String getValue(FinancialHighlightRequestField field) {
-			switch (field) {
-			case LAST_QTR_EPS:
-				return "lastQtrEPS";
-			case ANNUAL_EPS:
-				return "annualEPS";
-			case TTM_EPS:
-				return "ttmEPS";
-			default:
-				return "";
-			}
+		private final String value;
+
+		private FinancialHighlightRequestField(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
 		}
 
 		public static String forQuery(FinancialHighlightRequestField[] fields) {
@@ -34,7 +33,7 @@ public class FinancialHighlightRequest implements OnDemandRequest {
 				if (sb.length() > 0) {
 					sb.append(',');
 				}
-				sb.append(f.getValue(f));
+				sb.append(f.getValue());
 			}
 
 			return sb.toString();
@@ -78,6 +77,11 @@ public class FinancialHighlightRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<FinancialHighlights> responseType() {
+		return FinancialHighlights.class;
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
@@ -93,7 +97,7 @@ public class FinancialHighlightRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public FinancialHighlightRequest build() {
 			return new FinancialHighlightRequest(this);
 		}
 	}

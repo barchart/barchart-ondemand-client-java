@@ -1,142 +1,50 @@
 package com.barchart.ondemand.api;
 
 public enum TechnicalsRequestField {
-	PRICE_CHG_5_DAY, PRICE_CHG_20_DAY, PRICE_CHG_50_DAY, PRICE_CHG_100_DAY, PRICE_CHG_200_DAY, PRICE_CHG_YTD, //
-	PCT_CHG_5_DAY, PCT_CHG_20_DAY, PCT_CHG_50_DAY, PCT_CHG_100_DAY, PCT_CHG_200_DAY, PCT_CHG_YTD, //
-	AVG_VOL_5_DAY, AVG_VOL_20_DAY, AVG_VOL_50_DAY, AVG_VOL_100_DAY, AVG_VOL_200_DAY, AVG_VOL_YTD, //
-	RAW_STOC_9_DAY, RAW_STOC_14_DAY, RAW_STOC_20_DAY, RAW_STOC_50_DAY, RAW_STOC_100_DAY, //
-	STOC_K_9_DAY, STOC_K_14_DAY, STOC_K_20_DAY, STOC_K_50_DAY, STOC_K_100_DAY, //
-	STOC_D_9_DAY, STOC_D_14_DAY, STOC_D_20_DAY, STOC_D_50_DAY, STOC_D_100_DAY, //
-	ATR_9_DAY, ATR_14_DAY, ATR_20_DAY, ATR_50_DAY, ATR_100_DAY, //
-	RSI_9_DAY, RSI_14_DAY, RSI_20_DAY, RSI_50_DAY, RSI_100_DAY, //
-	PCT_R_9_DAY, PCT_R_14_DAY, PCT_R_20_DAY, PCT_R_50_DAY, PCT_R_100_DAY, //
-	HIST_VOL_9_DAY, HIST_VOL_14_DAY, HIST_VOL_20_DAY, HIST_VOL_50_DAY, HIST_VOL_100_DAY, //
-	MACD_9_DAY, MACD_14_DAY, MACD_20_DAY, MACD_50_DAY, MACD_100_DAY, //
-	STD_DEV;
+	// Price Change
+	PRICE_CHG_5_DAY("priceChangeFiveDay"), PRICE_CHG_20_DAY("priceChangeTwentyDay"), PRICE_CHG_50_DAY("priceChangeFiftyDay"),
+	PRICE_CHG_100_DAY("priceChangeOneHundredDay"), PRICE_CHG_200_DAY("priceChangeTwoHundredDay"), PRICE_CHG_YTD("priceChangeYTD"),
+	// Percent Change
+	PCT_CHG_5_DAY("percentChangeFiveDay"), PCT_CHG_20_DAY("percentChangeTwentyDay"), PCT_CHG_50_DAY("percentChangeFiftyDay"),
+	PCT_CHG_100_DAY("percentChangeOneHundredDay"), PCT_CHG_200_DAY("percentChangeTwoHundredDay"), PCT_CHG_YTD("percentChangeYTD"),
+	// Average Volume
+	AVG_VOL_5_DAY("averageVolumeFiveDay"), AVG_VOL_20_DAY("averageVolumeTwentyDay"), AVG_VOL_50_DAY("averageVolumeFiftyDay"),
+	AVG_VOL_100_DAY("averageVolumeOneHundredDay"), AVG_VOL_200_DAY("averageVolumeTwoHundredDay"), AVG_VOL_YTD("averageVolumeYTD"),
+	// Raw Sochastic
+	RAW_STOC_9_DAY("nineDayRawStochastic"), RAW_STOC_14_DAY("fourteenDayRawStochastic"), RAW_STOC_20_DAY("twentyDayRawStochastic"),
+	RAW_STOC_50_DAY("fiftyDayRawStochastic"), RAW_STOC_100_DAY("oneHundredDayRawStochastic"),
+	// Stochastic %k
+	STOC_K_9_DAY("nineDayStochasticK"), STOC_K_14_DAY("fourteenDayStochasticK"), STOC_K_20_DAY("twentyDayStochasticK"),
+	STOC_K_50_DAY("fiftyDayStochasticK"), STOC_K_100_DAY("oneHundredDayStochasticK"),
+	// Stochastic %d
+	STOC_D_9_DAY("nineDayStochasticD"), STOC_D_14_DAY("fourteenDayStochasticD"), STOC_D_20_DAY("twentyDayStochasticD"),
+	STOC_D_50_DAY("fiftyDayStochasticD"), STOC_D_100_DAY("oneHundredDayStochasticD"),
+	// Average True Range
+	ATR_9_DAY("nineDayATR"), ATR_14_DAY("fourteenDayATR"), ATR_20_DAY("twentyDayATR"),
+	ATR_50_DAY("fiftyDayATR"), ATR_100_DAY("oneHundredDayATR"),
+	// Relative Strength
+	RSI_9_DAY("nineDayRelativeStrength"), RSI_14_DAY("fourteenDayRelativeStrength"), RSI_20_DAY("twentyDayRelativeStrength"),
+	RSI_50_DAY("fiftyDayRelativeStrength"), RSI_100_DAY("oneHundredDayRelativeStrength"),
+	// Percent R
+	PCT_R_9_DAY("nineDayPercentR"), PCT_R_14_DAY("fourteenDayPercentR"), PCT_R_20_DAY("twentyDayPercentR"),
+	PCT_R_50_DAY("fiftyDayPercentR"), PCT_R_100_DAY("oneHundredDayPercentR"),
+	// Historic Volatility
+	HIST_VOL_9_DAY("nineDayHistoricVolatility"), HIST_VOL_14_DAY("fourteenDayHistoricVolatility"), HIST_VOL_20_DAY("twentyDayHistoricVolatility"),
+	HIST_VOL_50_DAY("fiftyDayHistoricVolatility"), HIST_VOL_100_DAY("oneHundredDayHistoricVolatility"),
+	// Moving Average Convergence/Divergence
+	MACD_9_DAY("nineDayMACD"), MACD_14_DAY("fourteenDayMACD"), MACD_20_DAY("twentyDayMACD"),
+	MACD_50_DAY("fiftyDayMACD"), MACD_100_DAY("oneHundredDayMACD"),
+	// Standard Deviation
+	STD_DEV("standardDeviation");
 
-	public String getValue(TechnicalsRequestField field) {
-		switch (field) {
-		case PRICE_CHG_5_DAY:
-			return "priceChangeFiveDay";
-		case PRICE_CHG_20_DAY:
-			return "priceChangeTwentyDay";
-		case PRICE_CHG_50_DAY:
-			return "priceChangeFiftyDay";
-		case PRICE_CHG_100_DAY:
-			return "priceChangeOneHundredDay";
-		case PRICE_CHG_200_DAY:
-			return "priceChangeTwoHundredDay";
-		case PRICE_CHG_YTD:
-			return "priceChangeYTD";
-		case PCT_CHG_5_DAY:
-			return "percentChangeFiveDay";
-		case PCT_CHG_20_DAY:
-			return "percentChangeTwentyDay";
-		case PCT_CHG_50_DAY:
-			return "percentChangeFiftyDay";
-		case PCT_CHG_100_DAY:
-			return "percentChangeOneHundredDay";
-		case PCT_CHG_200_DAY:
-			return "percentChangeTwoHundredDay";
-		case PCT_CHG_YTD:
-			return "percentChangeYTD";
-		case AVG_VOL_5_DAY:
-			return "averageVolumeFiveDay";
-		case AVG_VOL_20_DAY:
-			return "averageVolumeTwentyDay";
-		case AVG_VOL_50_DAY:
-			return "averageVolumeFiftyDay";
-		case AVG_VOL_100_DAY:
-			return "averageVolumeOneHundredDay";
-		case AVG_VOL_200_DAY:
-			return "averageVolumeTwoHundredDay";
-		case AVG_VOL_YTD:
-			return "averageVolumeYTD";
-		case RAW_STOC_9_DAY:
-			return "nineDayRawStochastic";
-		case RAW_STOC_14_DAY:
-			return "fourteenDayRawStochastic";
-		case RAW_STOC_20_DAY:
-			return "twentyDayRawStochastic";
-		case RAW_STOC_50_DAY:
-			return "fiftyDayRawStochastic";
-		case RAW_STOC_100_DAY:
-			return "oneHundredDayRawStochastic";
-		case STOC_K_9_DAY:
-			return "nineDayStochasticK";
-		case STOC_K_14_DAY:
-			return "fourteenDayStochasticK";
-		case STOC_K_20_DAY:
-			return "twentyDayStochasticK";
-		case STOC_K_50_DAY:
-			return "fiftyDayStochasticK";
-		case STOC_K_100_DAY:
-			return "oneHundredDayStochasticK";
-		case STOC_D_9_DAY:
-			return "nineDayStochasticD";
-		case STOC_D_14_DAY:
-			return "fourteenDayStochasticD";
-		case STOC_D_20_DAY:
-			return "twentyDayStochasticD";
-		case STOC_D_50_DAY:
-			return "fiftyDayStochasticD";
-		case STOC_D_100_DAY:
-			return "oneHundredDayStochasticD";
-		case ATR_9_DAY:
-			return "nineDayATR";
-		case ATR_14_DAY:
-			return "fourteenDayATR";
-		case ATR_20_DAY:
-			return "twentyDayATR";
-		case ATR_50_DAY:
-			return "fiftyDayATR";
-		case ATR_100_DAY:
-			return "oneHundredDayATR";
-		case RSI_9_DAY:
-			return "nineDayRelativeStrength";
-		case RSI_14_DAY:
-			return "fourteenDayRelativeStrength";
-		case RSI_20_DAY:
-			return "twentyDayRelativeStrength";
-		case RSI_50_DAY:
-			return "fiftyDayRelativeStrength";
-		case RSI_100_DAY:
-			return "oneHundredDayRelativeStrength";
-		case PCT_R_9_DAY:
-			return "nineDayPercentR";
-		case PCT_R_14_DAY:
-			return "fourteenDayPercentR";
-		case PCT_R_20_DAY:
-			return "twentyDayPercentR";
-		case PCT_R_50_DAY:
-			return "fiftyDayPercentR";
-		case PCT_R_100_DAY:
-			return "oneHundredDayPercentR";
-		case HIST_VOL_9_DAY:
-			return "nineDayHistoricVolatility";
-		case HIST_VOL_14_DAY:
-			return "fourteenDayHistoricVolatility";
-		case HIST_VOL_20_DAY:
-			return "twentyDayHistoricVolatility";
-		case HIST_VOL_50_DAY:
-			return "fiftyDayHistoricVolatility";
-		case HIST_VOL_100_DAY:
-			return "oneHundredDayHistoricVolatility";
-		case MACD_9_DAY:
-			return "nineDayMACD";
-		case MACD_14_DAY:
-			return "fourteenDayMACD";
-		case MACD_20_DAY:
-			return "twentyDayMACD";
-		case MACD_50_DAY:
-			return "fiftyDayMACD";
-		case MACD_100_DAY:
-			return "oneHundredDayMACD";
-		case STD_DEV:
-			return "standardDeviation";
-		default:
-			return "";
-		}
+	private final String value;
+
+	private TechnicalsRequestField(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
 	}
 
 	public static TechnicalsRequestField[] all() {
@@ -155,7 +63,7 @@ public enum TechnicalsRequestField {
 			if (sb.length() > 0) {
 				sb.append(',');
 			}
-			sb.append(f.getValue(f));
+			sb.append(f.getValue());
 		}
 
 		return sb.toString();

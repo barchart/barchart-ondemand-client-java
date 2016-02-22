@@ -5,9 +5,10 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.barchart.ondemand.api.responses.CorporateActions;
 import com.barchart.ondemand.api.responses.CorporateActions.EventType;
 
-public class CorporateActionsRequest implements OnDemandRequest {
+public class CorporateActionsRequest implements OnDemandRequest<CorporateActions> {
 
 	private final String symbols;
 	private final String fields;
@@ -62,6 +63,11 @@ public class CorporateActionsRequest implements OnDemandRequest {
 		return params;
 	}
 
+	@Override
+	public Class<CorporateActions> responseType() {
+		return CorporateActions.class;
+	}
+
 	/* builder magic * */
 
 	public static class Builder {
@@ -85,7 +91,7 @@ public class CorporateActionsRequest implements OnDemandRequest {
 			return this;
 		}
 
-		public OnDemandRequest build() {
+		public CorporateActionsRequest build() {
 			return new CorporateActionsRequest(this);
 		}
 	}
