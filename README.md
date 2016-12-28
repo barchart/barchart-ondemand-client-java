@@ -7,6 +7,7 @@
 ### Currently supports
 
 * getQuote
+* getQuoteEod
 * getFuturesOptions
 * getShortDatedFuturesOptions
 * getProfile

@@ -1,8 +1,11 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
+import com.barchart.ondemand.api.EodQuoteRequest;
 import com.barchart.ondemand.api.QuoteRequest;
 import com.barchart.ondemand.api.QuoteRequest.QuoteRequestField;
 import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
+import com.barchart.ondemand.api.responses.EodQuote;
+import com.barchart.ondemand.api.responses.EodQuotes;
 import com.barchart.ondemand.api.responses.Quote;
 import com.barchart.ondemand.api.responses.Quotes;
 import com.barchart.ondemand.api.responses.Technical;
@@ -45,5 +48,16 @@ public class ClientSandbox {
 			System.out.println("Quote : " + q.getSymbol() + " last = " + q.getLastPrice());
 		}
 
+		// EOD quote
+
+		final EodQuoteRequest.Builder eodBuilder = new EodQuoteRequest.Builder();
+
+		eodBuilder.symbols(new String[] { "APPL", "NEM", "TBY0", "GH*1" });
+
+		final EodQuotes eodResults = onDemand.fetch(eodBuilder.build());
+
+		for (EodQuote q : eodResults.all()) {
+			System.out.println("EOD Quote : " + q.getSymbol() + " close = " + q.getClose());
+		}
 	}
 }
