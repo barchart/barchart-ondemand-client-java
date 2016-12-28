@@ -57,7 +57,7 @@ System.out.println("Quote by symbol = " + JsonUtil.intoJson(quotes.bySymbol("AAP
 ### Adding to your project
 
 ##### Plain Jar
-[Download the latest version here](https://github.com/barchart/barchart-ondemand-client-java/releases/tag/barchart-ondemand-client-2.0.1)
+[Download the latest version here](https://github.com/barchart/barchart-ondemand-client-java/releases/tag/barchart-ondemand-client-2.0.2)
 
 ##### Maven
 ```xml
