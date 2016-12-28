@@ -8,6 +8,8 @@
 
 * getQuote
 * getQuoteEod
+* getEquitiesByExchange
+* getFuturesByExchange
 * getFuturesOptions
 * getShortDatedFuturesOptions
 * getProfile

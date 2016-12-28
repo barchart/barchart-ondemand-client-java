@@ -1,11 +1,16 @@
 import com.barchart.ondemand.BarchartOnDemandClient;
 import com.barchart.ondemand.api.EodQuoteRequest;
+import com.barchart.ondemand.api.EquitiesByExchangeRequest;
+import com.barchart.ondemand.api.FuturesByExchangeRequest;
 import com.barchart.ondemand.api.QuoteRequest;
+import com.barchart.ondemand.api.OnDemandRequest.GenericRequestField;
 import com.barchart.ondemand.api.QuoteRequest.QuoteRequestField;
 import com.barchart.ondemand.api.TechnicalsRequest;
 import com.barchart.ondemand.api.TechnicalsRequestField;
 import com.barchart.ondemand.api.responses.EodQuote;
 import com.barchart.ondemand.api.responses.EodQuotes;
+import com.barchart.ondemand.api.responses.EquitiesByExchange;
+import com.barchart.ondemand.api.responses.FuturesByExchange;
 import com.barchart.ondemand.api.responses.Quote;
 import com.barchart.ondemand.api.responses.Quotes;
 import com.barchart.ondemand.api.responses.Technical;
@@ -58,6 +63,32 @@ public class ClientSandbox {
 
 		for (EodQuote q : eodResults.all()) {
 			System.out.println("EOD Quote : " + q.getSymbol() + " close = " + q.getClose());
+		}
+
+		// Futures by Exchange
+
+		final FuturesByExchangeRequest.Builder futBuilder = new FuturesByExchangeRequest.Builder();
+
+		futBuilder.exchange("CME");
+
+		final FuturesByExchange futResults = onDemand.fetch(futBuilder.build());
+
+		for (Quote q : futResults.all()) {
+			System.out.println("Future Quote [CME] : " + q.getSymbol() + " last = " + q.getLastPrice());
+		}
+
+		// Equities by Exchange
+
+		final EquitiesByExchangeRequest.Builder eqBuilder = new EquitiesByExchangeRequest.Builder();
+
+		eqBuilder.exchange("NYSE");
+		eqBuilder.fields(new GenericRequestField[] { GenericRequestField.PREVIOUS_CLOSE });
+
+		final EquitiesByExchange eqResults = onDemand.fetch(eqBuilder.build());
+
+		for (Quote q : eqResults.all()) {
+			System.out.println("Equities Quote [NYSE] : " + q.getSymbol() + " last = " + q.getLast() + " prev close = "
+					+ q.getPreviousClose());
 		}
 	}
 }

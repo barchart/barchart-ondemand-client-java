@@ -29,6 +29,8 @@ public class Quote {
 	private String mode;
 	@JsonProperty("lastPrice")
 	private double lastPrice;
+	@JsonProperty("last")
+	private double last;
 	@JsonProperty("tradeTimestamp")
 	private String tradeTimestamp;
 	@JsonProperty("netChange")
@@ -45,6 +47,10 @@ public class Quote {
 	private double low;
 	@JsonProperty("close")
 	private double close;
+	@JsonProperty("settlement")
+	private double settlement;
+	@JsonProperty("previousClose")
+	private double previousClose;
 	@JsonProperty("numTrades")
 	private long numTrades;
 	@JsonProperty("dollarVolume")
@@ -293,6 +299,30 @@ public class Quote {
 	@JsonProperty("fiftyTwoWkLowDate")
 	public void setFiftyTwoWkLowDate(String fiftyTwoWkLowDate) {
 		this.fiftyTwoWkLowDate = fiftyTwoWkLowDate;
+	}
+
+	public double getLast() {
+		return last;
+	}
+
+	public void setLast(double last) {
+		this.last = last;
+	}
+
+	public double getSettlement() {
+		return settlement;
+	}
+
+	public void setSettlement(double settlement) {
+		this.settlement = settlement;
+	}
+
+	public double getPreviousClose() {
+		return previousClose;
+	}
+
+	public void setPreviousClose(double previousClose) {
+		this.previousClose = previousClose;
 	}
 
 	@Override
