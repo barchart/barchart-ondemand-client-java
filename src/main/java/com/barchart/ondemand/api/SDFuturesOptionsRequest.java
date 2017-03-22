@@ -55,7 +55,7 @@ public class SDFuturesOptionsRequest implements OnDemandRequest<SDFuturesOptions
 	@Override
 	public String endpoint() {
 
-		return "getShortDatedFuturesOptions.json";
+		return "getSpecialOptions.json";
 	}
 
 	@Override
