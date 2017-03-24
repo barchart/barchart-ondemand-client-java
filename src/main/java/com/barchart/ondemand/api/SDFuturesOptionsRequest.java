@@ -50,6 +50,10 @@ public class SDFuturesOptionsRequest implements OnDemandRequest<SDFuturesOptions
 		if (b.root != null) {
 			params.put("root", b.root);
 		}
+
+		if (b.strikesOnly) {
+			params.put("jerq", false);
+		}
 	}
 
 	@Override
@@ -84,6 +88,7 @@ public class SDFuturesOptionsRequest implements OnDemandRequest<SDFuturesOptions
 		private FuturesOptionsRequestType type;
 		private String root;
 		private String contract;
+		private boolean strikesOnly;
 
 		public Builder root(final String root) {
 			this.root = root;
@@ -92,6 +97,11 @@ public class SDFuturesOptionsRequest implements OnDemandRequest<SDFuturesOptions
 
 		public Builder contract(final String contract) {
 			this.contract = contract;
+			return this;
+		}
+
+		public Builder strikesOnly(final Boolean strikesOnly) {
+			this.strikesOnly = strikesOnly;
 			return this;
 		}
 

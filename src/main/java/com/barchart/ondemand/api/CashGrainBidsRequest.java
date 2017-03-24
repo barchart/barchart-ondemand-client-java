@@ -40,16 +40,16 @@ public class CashGrainBidsRequest implements OnDemandRequest<CashGrainBids> {
 		if (!zipCode.isEmpty()) {
 			params.put("zipCode", zipCode);
 		}
-		if (!getAllBids.isEmpty()) {
+		if (getAllBids != null && !getAllBids.isEmpty()) {
 			params.put("getAllBids", getAllBids);
 		}
-		if (!location.isEmpty()) {
+		if (location != null && !location.isEmpty()) {
 			params.put("location", location);
 		}
-		if (!companyName.isEmpty()) {
+		if (location != null && !companyName.isEmpty()) {
 			params.put("companyName", companyName);
 		}
-		if (!getAllLocations.isEmpty()) {
+		if (location != null && !getAllLocations.isEmpty()) {
 			params.put("getAllLocations", getAllLocations);
 		}
 
