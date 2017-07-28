@@ -61,7 +61,7 @@ public class BarchartOnDemandClient {
 		sb.append(request.endpoint());
 		sb.append("?");
 		sb.append(QueryUtil.urlEncodeUTF8(request.parameters()));
-		sb.append("&apikey=");
+		sb.append("&key=");
 		sb.append(apiKey);
 
 		final String response = fetchString(sb.toString(), http);
