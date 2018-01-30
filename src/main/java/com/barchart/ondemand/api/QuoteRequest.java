@@ -32,8 +32,8 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 	}
 
 	public enum QuoteRequestField {
-		_52_WEEK_HIGH("fiftyTwoWkHigh"), _52_WEEK_HIGH_DATE("fiftyTwoWkHighDate"),
-		_52_WEEK_LOW("fiftyTwoWkLow"), _52_WEEK_LOW_DATE("fiftyTwoWkLowDate");
+		_52_WEEK_HIGH("fiftyTwoWkHigh"), _52_WEEK_HIGH_DATE("fiftyTwoWkHighDate"), _52_WEEK_LOW("fiftyTwoWkLow"), _52_WEEK_LOW_DATE(
+				"fiftyTwoWkLowDate");
 
 		private final String value;
 
@@ -63,6 +63,7 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 			return sb.toString();
 
 		}
+
 	}
 
 	private final String symbols;
@@ -74,7 +75,7 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 
 		this.symbols = StringUtils.join(b.symbols, ",");
 
-		this.fields = QuoteRequestField.forQuery(b.fields);
+		this.fields = (b.fields == null) ? fieldsForQuery(b.stringFields) : QuoteRequestField.forQuery(b.fields);
 
 		params.put("mode", QuoteRequestMode.getValue(b.mode));
 
@@ -109,10 +110,27 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 		return Quotes.class;
 	}
 
+	private String fieldsForQuery(String[] fields) {
+		if (fields == null) {
+			return "";
+		}
+		final StringBuilder sb = new StringBuilder();
+
+		for (String f : fields) {
+			if (sb.length() > 0) {
+				sb.append(',');
+			}
+			sb.append(f);
+		}
+
+		return sb.toString();
+	}
+
 	public static class Builder {
 
 		private String[] symbols;
 		private QuoteRequestField[] fields;
+		private String[] stringFields;
 		private QuoteRequestMode mode;
 
 		public Builder symbols(final String[] symbols) {
@@ -122,6 +140,11 @@ public class QuoteRequest implements OnDemandRequest<Quotes> {
 
 		public Builder fields(final QuoteRequestField[] fields) {
 			this.fields = fields;
+			return this;
+		}
+
+		public Builder fields(final String[] fields) {
+			this.stringFields = fields;
 			return this;
 		}
 

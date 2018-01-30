@@ -69,6 +69,16 @@ public class Quote {
 	private double fiftyTwoWkLow;
 	@JsonProperty("fiftyTwoWkLowDate")
 	private String fiftyTwoWkLowDate;
+
+	@JsonProperty("previousOpen")
+	private double previousOpen;
+	@JsonProperty("previousHigh")
+	private double previousHigh;
+	@JsonProperty("previousLow")
+	private double previousLow;
+	@JsonProperty("previousSettlement")
+	private double previousSettlement;
+
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("symbol")
@@ -338,6 +348,38 @@ public class Quote {
 	@JsonAnySetter
 	public void setAdditionalProperty(String name, Object value) {
 		this.additionalProperties.put(name, value);
+	}
+
+	public double getPreviousOpen() {
+		return previousOpen;
+	}
+
+	public void setPreviousOpen(double previousOpen) {
+		this.previousOpen = previousOpen;
+	}
+
+	public double getPreviousHigh() {
+		return previousHigh;
+	}
+
+	public void setPreviousHigh(double previousHigh) {
+		this.previousHigh = previousHigh;
+	}
+
+	public double getPreviousLow() {
+		return previousLow;
+	}
+
+	public void setPreviousLow(double previousLow) {
+		this.previousLow = previousLow;
+	}
+
+	public double getPreviousSettlement() {
+		return previousSettlement;
+	}
+
+	public void setPreviousSettlement(double previousSettlement) {
+		this.previousSettlement = previousSettlement;
 	}
 
 }

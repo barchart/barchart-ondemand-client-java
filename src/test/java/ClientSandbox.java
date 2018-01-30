@@ -44,13 +44,17 @@ public class ClientSandbox {
 
 		final QuoteRequest.Builder qBuilder = new QuoteRequest.Builder();
 
-		qBuilder.fields(QuoteRequestField.values());
+		qBuilder.fields(new String[] { "previousLow", "previousHigh" });
 		qBuilder.symbols(new String[] { "APPL", "NEM", "TBY0", "GH*1" });
 
 		final Quotes qResults = onDemand.fetch(qBuilder.build());
 
 		for (Quote q : qResults.all()) {
-			System.out.println("Quote : " + q.getSymbol() + " last = " + q.getLastPrice());
+			System.out.println("Quote : " + q.getSymbol() + " last = " + q.getLastPrice() + " prevH "
+					+ q.getPreviousHigh() + " low " + q.getPreviousLow());
+
+			// get a non mapped field by string
+			q.getAdditionalProperties().get("previousSettlement");
 		}
 
 		// EOD quote
