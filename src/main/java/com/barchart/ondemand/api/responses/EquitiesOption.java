@@ -1,5 +1,10 @@
 package com.barchart.ondemand.api.responses;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -71,8 +76,8 @@ public class EquitiesOption {
 	private double percentChange;
 	@JsonProperty("openInterest")
 	private String openInterest;
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 	
-
 	@JsonProperty("underlying_symbol")
 	public String getUnderlying_symbol() {
 		return underlying_symbol;
@@ -371,6 +376,16 @@ public class EquitiesOption {
 	@JsonProperty("percentChange")
 	public void setPercentChange(double percentChange) {
 		this.percentChange = percentChange;
+	}
+	
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
+
+	@JsonAnySetter
+	public void setAdditionalProperty(String name, Object value) {
+		this.additionalProperties.put(name, value);
 	}
 
 }
